@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.back1{
+    background: linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.6)),url(../img/background.jpeg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.jumbotron{
+    margin-top: 12%;
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0);
+    
+}
+.jumbotron h1 {
+	font-size: 3em;
+}
+#start{
+    margin-top: 50px;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 1.5em;
+    border: 3px solid white;
+    color: white;
+    outline: none;
+    background: transparent;
+    border-radius: 5%;
+}
+#start:hover {
+	background: white;
+    color: black; 
+    box-shadow: 1px 0px 10px 1px #000;
+}
+#register,#login{
+    border: 3px solid #fff;
+    padding: 30px;
+    margin-top: 10%;
+    color: #fff;
+    margin-bottom: 5%;
+}
+.mars-btm-10{
+  margin-bottom: 10px;  
+}
+.mars-top-30{
+    margin-top: 30px;
+}
+.title{
+    border-bottom: 3px solid #fff;
+    padding: 5px;
+    margin-bottom: 30px;
+}
+.bg-custom{
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 10px 1px #000;
+}
+.bg-custom-2{
+    background: #243447;
+    box-shadow: 1px 1px 5px 1px #000;
+}
+#home{
+    margin-top: 5%;
+}
+#cover{
+    width: 100vw;
+    height: 300px;
+    background-repeat: no-repeat !important;
+    background-position: top;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+    background: linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)), url(../img/cover_pic/01.jpg);
+}
+#profile-head{
+    position: relative;
+    margin-top: 40%;
+    box-shadow: 1px 1px 10px 1px #000;
+}

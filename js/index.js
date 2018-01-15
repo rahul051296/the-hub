@@ -13,3 +13,14 @@ document.forms.register.password2.onkeyup = () => {
         document.getElementById('submit').className = " btn btn-block btn-success mars-top-30";
     }
 };
+
+let url = "search.php";
+
+fetch(url,{method:'GET'})
+.then(response => response.json())
+.then((response) =>{
+
+ let arr = [];
+ arr = response.results;
+ console.log(arr);
+});

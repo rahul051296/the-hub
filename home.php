@@ -1,15 +1,15 @@
 <?php
     session_start();
-if( !isset($_SESSION['userEmail']) ) {
+if( !isset($_SESSION['username']) ) {
         header("Location: login.php");
         exit;
  }
     include 'dbconnect.php';
-    $email = $_SESSION['userEmail'];
+    $username = $_SESSION['username'];
     if(!$dbcon){
          die('Error Connecting to database');
     }
-        $res = mysqli_query($dbcon,"SELECT * FROM `users` WHERE Email = '$email'");
+        $res = mysqli_query($dbcon,"SELECT * FROM `users` WHERE Username = '$username'");
         $row=mysqli_fetch_array($res);
 
         $name = $row['Name'];
@@ -28,8 +28,9 @@ if( !isset($_SESSION['userEmail']) ) {
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-md bg-custom-2 navbar-dark">
+        <nav class="navbar navbar-expand-md fixed-top bg-custom-2 navbar-dark">
             <!-- Brand -->
+            <div class="container">
             <a class="navbar-brand" href="index.php">The Hub</a>
 
             <!-- Toggler/collapsibe Button -->
@@ -42,38 +43,42 @@ if( !isset($_SESSION['userEmail']) ) {
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link text-center" href="home.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-center" href="#">About</a>
+                        <a class="nav-link" href="home.php">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <?php
             echo $name;
             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="profile.php">Profile</a>
-                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="profile.php?user=<?php echo $username; ?>">Profile</a>
+                            <a class="dropdown-item" href="settings.php">Settings</a>
                             <a class="dropdown-item" href="signout.php">Sign Out</a>
                         </div>
                     </li>
                     <li class="nav-item">
 
-                        <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                        <form action="search.php" method="post" name="searchForm">
+                       <div class="input-group">
+                        <input type="text" name="query" id="search" class="form-control" placeholder="Search">
+                        <span class="input-group-btn"></span>
+                                <button type="submit" class="btn btn-custom" id="search" name="search">
+								<i class="fas fa-search"></i>
+                        </button>
+                        </span>
+                    </div>
                         </form>
                     </li>
                 </ul>
+            </div>
             </div>
         </nav>
         <section class="container" id="home">
             <div class="row">
                 <div class="col-4">
                     <img src=<?php echo "'img/profile_pic/01.jpg'" ?> width="200px" class="img-responsive" />
-                   <!-- <form action="uploadPic.php" method="post" name="upload" enctype="multipart/form-data">
+                    <!-- <form action="uploadPic.php" method="post" name="upload" enctype="multipart/form-data">
                         <input type="file" name="fileToUpload" id="fileToUpload">
                         <input type="submit" value="Upload Image" name="submit">
                     </form>-->

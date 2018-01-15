@@ -1,28 +1,32 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: 'Josefin Sans', sans-serif;
 }
 
-.back1{
-    background: linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.6)),url(../img/background.jpeg);
+.back1 {
+    background: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .6)), url(../img/background.jpg);
     background-attachment: fixed;
     background-position: center;
+    height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
 }
-.jumbotron{
+
+.jumbotron {
     margin-top: 12%;
     text-align: center;
     color: white;
     background: rgba(0, 0, 0, 0);
-    
+
 }
+
 .jumbotron h1 {
-	font-size: 3em;
+    font-size: 3em;
 }
-#start{
+
+#start {
     margin-top: 50px;
     padding: 20px;
     font-weight: bold;
@@ -33,51 +37,123 @@
     background: transparent;
     border-radius: 5%;
 }
+
 #start:hover {
-	background: white;
-    color: black; 
+    background: white;
+    color: black;
     box-shadow: 1px 0px 10px 1px #000;
 }
-#register,#login{
+
+#register,
+#login {
     border: 3px solid #fff;
     padding: 30px;
     margin-top: 10%;
     color: #fff;
     margin-bottom: 5%;
 }
-.mars-btm-10{
-  margin-bottom: 10px;  
+
+.mars-btm-10 {
+    margin-bottom: 10px;
 }
-.mars-top-30{
+.mars-btm-20 {
+    margin-bottom: 20px;
+}
+
+.mars-top-30 {
     margin-top: 30px;
 }
-.title{
+.btn-custom {
+	background: #fff;
+    border-radius: 0;
+}
+#search {
+	border-radius: 0;
+    outline: 0;
+    border: 0;
+}
+.title {
     border-bottom: 3px solid #fff;
     padding: 5px;
     margin-bottom: 30px;
 }
-.bg-custom{
+
+.bg-custom {
     background: rgba(0, 0, 0, 0.1);
     box-shadow: 1px 1px 10px 1px #000;
 }
-.bg-custom-2{
+
+.bg-custom-2 {
     background: #243447;
     box-shadow: 1px 1px 5px 1px #000;
 }
-#home{
+
+#home {
     margin-top: 5%;
 }
-#cover{
+
+#cover {
     width: 100vw;
     height: 300px;
     background-repeat: no-repeat !important;
-    background-position: top;
+    background-position: center !important;
     background-size: cover !important;
     background-attachment: fixed !important;
-    background: linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)), url(../img/cover_pic/01.jpg);
+/*    background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url(../img/cover_pic/01.jpg);*/
+    background: #8b8b8b;
 }
-#profile-head{
-    position: relative;
-    margin-top: 40%;
+
+#profile-pic {
     box-shadow: 1px 1px 10px 1px #000;
+    background: #fff;
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+}
+
+#profile-head {
+    position: relative;
+    padding-top: 15%;
+    color: white;
+    text-align: center;
+}
+
+#profile-details {
+    margin-top: 10px;
+    text-align: center !important;
+}
+#settings{
+
+}
+#settings-title{
+    border: 4px solid #243447;
+    padding: 10px;
+    background: #243447;
+    color: #fff;
+}
+body#sets{
+    border: 4px solid #243447;
+}
+#settings-content {
+    padding: 50px;
+    height: 100%;
+    background: #fff;
+}
+input.text-box, textarea{
+    border: 3px solid rgba(106, 106, 106, 0.3) !important;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    overflow: hidden;
+}
+input#fileToUpload{
+    margin-bottom: 10px;
+}
+@media only screen and (max-width:767px) {
+    #profile-head {
+        position: relative;
+        padding-top: 35%;
+        color: white;
+        text-align: center;
+    }
 }

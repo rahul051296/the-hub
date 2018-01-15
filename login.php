@@ -1,6 +1,6 @@
 <?php 
  session_start();
-if(isset($_SESSION['userEmail'])!=''){
+if(isset($_SESSION['username'])!=''){
        header("Location: home.php");
 
 }
@@ -18,7 +18,7 @@ if(isset($_POST['login'])){
         $row=mysqli_fetch_array($result);
         $count = mysqli_num_rows($result);
         if($count == 1 && $row['Password']==$password){
-            $_SESSION['userEmail'] = $row['Email'];
+            $_SESSION['username'] = $row['Username'];
             header("Location: home.php");
         }   
         else{

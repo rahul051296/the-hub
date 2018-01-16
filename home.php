@@ -10,9 +10,13 @@ if( !isset($_SESSION['username']) ) {
          die('Error Connecting to database');
     }
         $res = mysqli_query($dbcon,"SELECT * FROM `users` WHERE Username = '$username'");
+        $pics = mysqli_query($dbcon,"SELECT * FROM `pictures` WHERE Username = '$username'");
         $row=mysqli_fetch_array($res);
-
+        $picrow = mysqli_fetch_array($pics);
         $name = $row['Name'];
+        $bio = $row['Bio'];
+        $web = $row['Website'];
+        $pprofilepic = $picrow['Profile'];
        
 ?>
     <!DOCTYPE html>
@@ -21,7 +25,7 @@ if( !isset($_SESSION['username']) ) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
+        <meta name="theme-color" content="#243447">
         <title>Home</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/styles.css">
@@ -31,7 +35,7 @@ if( !isset($_SESSION['username']) ) {
         <nav class="navbar navbar-expand-md fixed-top bg-custom-2 navbar-dark">
             <!-- Brand -->
             <div class="container">
-            <a class="navbar-brand" href="index.php">The Hub</a>
+            <a class="navbar-brand" href="home.php">The Hub</a>
 
             <!-- Toggler/collapsibe Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -59,10 +63,10 @@ if( !isset($_SESSION['username']) ) {
                     </li>
                     <li class="nav-item">
 
-                        <form action="search.php" method="post" name="searchForm">
+                        <form action="search.php?" method="get" name="searchForm">
                        <div class="input-group">
                         <input type="text" name="query" id="search" class="form-control" placeholder="Search">
-                        <span class="input-group-btn"></span>
+                        <span class="input-group-btn">
                                 <button type="submit" class="btn btn-custom" id="search" name="search">
 								<i class="fas fa-search"></i>
                         </button>
@@ -75,18 +79,27 @@ if( !isset($_SESSION['username']) ) {
             </div>
         </nav>
         <section class="container" id="home">
-            <div class="row">
-                <div class="col-4">
-                    <img src=<?php echo "'img/profile_pic/01.jpg'" ?> width="200px" class="img-responsive" />
-                    <!-- <form action="uploadPic.php" method="post" name="upload" enctype="multipart/form-data">
-                        <input type="file" name="fileToUpload" id="fileToUpload">
-                        <input type="submit" value="Upload Image" name="submit">
-                    </form>-->
-                </div>
-                <div class="col-8">
-
-                </div>
-            </div>
+           <div class="row ">
+               <div class="col-md-4  d-md-block mars-btm-20 text-center text-md-left">  
+                    <img src=<?php if($pprofilepic!='' ) { echo "'$pprofilepic'"; } else{ echo "'img/profile_pic/default.png'"; } ?> class="img-responsive home-pic">
+                    <h3 class="mars-top-10" style="margin-bottom:0px;"><?php echo $name; ?></h3>
+                    <h6>@<?php echo $username; ?></h6>
+                    <p style="margin-bottom:5px;"><?php if(isset($bio)){echo $bio;} ?></p>
+                    <?php
+                    if(isset($web)){
+                        echo '<p><a href="'.$web.'" target="_blank">'.$web.'</a></p>';
+                    }
+                          ?>
+                </div>   
+                <div class="col-md-8 col-sm-12 mars-btm-20 text-md-left text-center text-lg-center">  
+                   <form action="">
+                    <textarea class="form-control" type="text" placeholder="Share your thoughts" name="post" style="resize:none; height:120px;"></textarea>
+                    <button type="submit" class="btn btn-block btn-outline-primary mars-top-10">POST</button>
+                    </form> 
+                    <div id="posts" class="mars-top-30">
+                    </div> 
+                </div>   
+           </div>
         </section>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

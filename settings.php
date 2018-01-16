@@ -22,9 +22,12 @@ if( !isset($_SESSION['username']) ) {
         mysqli_query($dbcon,"UPDATE pictures SET Cover = '$url' WHERE Username = '$username'");
     }
     if(isset($_POST['save'])){
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $bio = $_POST['bio'];
+        $name = mysqli_real_escape_string($dbcon,$_POST['name']);
+        $email = mysqli_real_escape_string($dbcon,$_POST['email']);
+        $bio = mysqli_real_escape_string($dbcon, $_POST['bio']);
+        $website = mysqli_real_escape_string($dbcon, $_POST['website']);
+        $password = mysqli_real_escape_string($dbcon, $_POST['password']);
+
         if($bio!=''){
             $sql = "UPDATE users SET bio = '$bio' WHERE Username='$username'";
             mysqli_query($dbcon,$sql);
@@ -40,6 +43,17 @@ if( !isset($_SESSION['username']) ) {
             mysqli_query($dbcon,$sql);
             $response = "Changes have been Saved.";
         }
+        if($website!=''){
+            $sql = "UPDATE users SET website = '$website' WHERE Username='$username'";
+            mysqli_query($dbcon,$sql);
+            $response = "Changes have been Saved.";
+        }
+        if($password!=''){
+            $pass = hash('md5',$password);
+            $sql = "UPDATE users SET password = '$pass' WHERE Username='$username'";
+            mysqli_query($dbcon,$sql);
+            $response = "Changes have been Saved.";
+        }
     }
 ?>
     <!DOCTYPE html>
@@ -48,7 +62,7 @@ if( !isset($_SESSION['username']) ) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
+        <meta name="theme-color" content="#243447">
         <title>Settings</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/styles.css">
@@ -58,7 +72,7 @@ if( !isset($_SESSION['username']) ) {
         <nav class="navbar navbar-expand-md bg-custom-2 navbar-dark">
             <!-- Brand -->
             <div class="container">
-                <a class="navbar-brand" href="index.php">The Hub</a>
+                <a class="navbar-brand" href="home.php">The Hub</a>
 
                 <!-- Toggler/collapsibe Button -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -86,10 +100,10 @@ if( !isset($_SESSION['username']) ) {
                         </li>
                         <li class="nav-item">
 
-                            <form action="search.php" method="post" name="searchForm">
+                            <form action="search.php" method="get" name="searchForm">
                                 <div class="input-group">
                                     <input type="text" name="query" id="search" class="form-control" placeholder="Search">
-                                    <span class="input-group-btn"></span>
+                                    <span class="input-group-btn">
                                     <button type="submit" class="btn btn-custom" id="search" name="search">
 								<i class="fas fa-search"></i>
                         </button>
@@ -136,15 +150,23 @@ if( !isset($_SESSION['username']) ) {
                     </div>
                     <form action="settings.php" name="settings" method="post">
                         <div class="row mars-btm-20">
-                            <label class="col-4" for="name">Change Name</label>
+                            <label class="col-4">Change Name</label>
                             <input type="text" style="border: 3px solid #f1f1f1;" class="col-8 text-box" placeholder="Enter a Name" name="name">
                         </div>
                         <div class="row mars-btm-20">
-                            <label class="col-4 " for="email">Change E-Mail</label>
+                            <label class="col-4 ">Change E-Mail</label>
                             <input class="col-8 text-box" type="text" placeholder="Enter an Email Id" name="email">
                         </div>
                         <div class="row mars-btm-20">
-                            <label class="col-4" for="email">Edit Bio</label>
+                            <label class="col-4 ">Change Password</label>
+                            <input class="col-8 text-box"  type="password" placeholder="Enter your new Password" name="password">
+                        </div>
+                        <div class="row mars-btm-20">
+                            <label class="col-4 ">Edit Website</label>
+                            <input class="col-8 text-box" type="text" placeholder="Enter your Website URL" name="website">
+                        </div>
+                        <div class="row mars-btm-20">
+                            <label class="col-4">Edit Bio</label>
                             <textarea class="col-8 text-box" type="text" placeholder="Add your Bio" name="bio" style="resize:none; height:150px;"></textarea>
                         </div>
                         <div class="row mars-btm-20 text-center">

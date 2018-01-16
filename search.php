@@ -14,8 +14,8 @@ if( !isset($_SESSION['username']) ) {
 
         $name = $row['Name'];
 
- if(isset($_POST['search'])){
-                     $term = $_POST['query'];
+ if(isset($_GET['search'])){
+                     $term = $_GET['query'];
                 $sql = "SELECT * FROM users WHERE Name Like '%$term%';";
                 $result=$dbcon->query($sql);
  }
@@ -27,17 +27,17 @@ if( !isset($_SESSION['username']) ) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
+        <meta name="theme-color" content="#243447">
         <title>Search</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/styles.css">
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-md fixed-top bg-custom-2 navbar-dark">
+        <nav class="navbar navbar-expand-md bg-custom-2 navbar-dark">
             <!-- Brand -->
             <div class="container">
-                <a class="navbar-brand" href="index.php">The Hub</a>
+                <a class="navbar-brand" href="home.php">The Hub</a>
 
                 <!-- Toggler/collapsibe Button -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -65,10 +65,10 @@ if( !isset($_SESSION['username']) ) {
                         </li>
                         <li class="nav-item">
 
-                            <form action="search.php" method="post" name="searchForm">
+                            <form action="search.php" method="get" name="searchForm">
                                 <div class="input-group">
                                     <input type="text" name="query" id="search" class="form-control" placeholder="Search">
-                                    <span class="input-group-btn"></span>
+                                    <span class="input-group-btn">
                                     <button type="submit" class="btn btn-custom" id="search" name="search">
 								<i class="fas fa-search"></i>
                         </button>
@@ -80,22 +80,34 @@ if( !isset($_SESSION['username']) ) {
                 </div>
             </div>
         </nav>
-        <section class="mars-top-30">
-
-            <h3 class="mars-top-30">
-                <?php 
-
-        while($srow=$result->fetch_assoc()){
-            echo "<br>";
-            $url = $srow['Username'];
-            echo "<a href='profile.php?user=$url'>".$srow['Name']."</a>";
-
-            }    
-                   
-                ?>
-            </h3>
-
-        </section>
+        <article >
+            <div class="col-12 text-center" id="settings-title">
+                    <h1 class="title">Search Result</h1>
+                </div>
+            <section class="container"id="search-results">
+                     <div class="row">
+                         <?php
+                            while($srow=$result->fetch_assoc()){
+                                $profilename = $srow["Username"];
+                                $profilepics = mysqli_query($dbcon,"SELECT * FROM `pictures` WHERE Username = '$profilename'");
+                                $picrow = mysqli_fetch_array($profilepics); 
+                                $url = $picrow['Profile'];
+                    echo ' <div class="col-md-4 col-sm-6 col-xs-12">
+                       <a href="profile.php?user='.$srow["Username"].'"><div class="row mars-btm-20">
+                       <div class="col-6" >
+                        <img src="'.$url.'" id="search-pic" class="img-responsive" alt="">
+                           </div>
+                           <div class="col-6 align-middle">
+                        <h4 class="">'.$srow["Name"].'</h4>
+                        <p>@'.$srow["Username"].'</p>
+                           </div>
+                        </div></a>
+                        </div>';
+                            }
+                              ?>
+                        </div>
+            </section>
+        </article>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>

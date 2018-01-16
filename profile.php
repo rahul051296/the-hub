@@ -23,6 +23,7 @@ if( !isset($_SESSION['username']) ) {
         $pprofilepic = $picrow['Profile'];
         $pcoverpic = $picrow['Cover'];
         $pbio = $prow['Bio'];
+        $pweb = $prow['Website'];
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -30,7 +31,7 @@ if( !isset($_SESSION['username']) ) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
+        <meta name="theme-color" content="#243447">
         <title>
             <?php echo $pname;  ?>
         </title>
@@ -42,7 +43,7 @@ if( !isset($_SESSION['username']) ) {
         <nav class="navbar navbar-expand-md bg-custom-2  fixed-top  navbar-dark navbar-fixed">
             <!-- Brand -->
             <div class="container">
-                <a class="navbar-brand" href="index.php">The Hub</a>
+                <a class="navbar-brand" href="home.php">The Hub</a>
 
                 <!-- Toggler/collapsibe Button -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -69,10 +70,10 @@ if( !isset($_SESSION['username']) ) {
                             </div>
                         </li>
                         <li class="nav-item">
-                            <form action="search.php" method="post" name="searchForm">
+                            <form action="search.php" method="get" name="searchForm">
                                 <div class="input-group">
                                     <input type="text" name="query" id="search" class="form-control" placeholder="Search">
-                                    <span class="input-group-btn"></span>
+                                    <span class="input-group-btn">
                                     <button type="submit" class="btn btn-custom" id="search" name="search">
 								<i class="fas fa-search"></i>
                         </button>
@@ -103,6 +104,11 @@ if( !isset($_SESSION['username']) ) {
                             }
                         ?>
                     </p>
+                    <?php
+                    if(isset($pweb)){
+                        echo '<a href="'.$pweb.'" target="_blank">'.$pweb.'</a>';
+                    }
+                          ?>
                 </div>
             </div>
         </article>

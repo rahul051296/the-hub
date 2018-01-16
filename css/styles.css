@@ -63,6 +63,9 @@
 .mars-top-30 {
     margin-top: 30px;
 }
+.mars-top-10 {
+    margin-top: 10px;
+}
 .btn-custom {
 	background: #fff;
     border-radius: 0;
@@ -89,7 +92,7 @@
 }
 
 #home {
-    margin-top: 5%;
+    margin-top: 100px;
 }
 
 #cover {
@@ -111,14 +114,31 @@
     height: 200px;
     background-size: cover;
 }
-
+.home-pic{
+    box-shadow: 0px 0px 5px 0px #000;
+    background: #fff;
+    object-fit: cover;
+    width: 230px;
+    height: 230px;
+    background-size: cover;
+}
+#home p{
+    font-size: 0.8em;
+}
+#home h6{
+    font-weight: normal;
+}
 #profile-head {
     position: relative;
     padding-top: 15%;
     color: white;
     text-align: center;
 }
-
+#posts{
+    width: 100%;
+    height: 300px;
+    border: 3px solid grey;
+}
 #profile-details {
     margin-top: 10px;
     text-align: center !important;
@@ -149,6 +169,20 @@ input.text-box, textarea{
 input#fileToUpload{
     margin-bottom: 10px;
 }
+#search-results{
+    margin-top: 5%;
+    padding: 20px;
+}
+#search-results a:hover {
+	text-decoration: none;
+}
+#search-pic{
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+    box-shadow: 0px 0px 10px 0px #000;
+}
+
 @media only screen and (max-width:767px) {
     #profile-head {
         position: relative;

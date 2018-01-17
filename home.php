@@ -13,6 +13,7 @@ if( !isset($_SESSION['username']) ) {
         $pics = mysqli_query($dbcon,"SELECT * FROM `pictures` WHERE Username = '$username'");
         $row=mysqli_fetch_array($res);
         $picrow = mysqli_fetch_array($pics);
+    
         $name = $row['Name'];
         $bio = $row['Bio'];
         $web = $row['Website'];
@@ -23,7 +24,9 @@ if(isset($_POST['update'])){
     $result=$dbcon->query($insert);
     header('Location: home.php');
 }
-       
+            $all = "SELECT * FROM `users`";
+            $allusers=$dbcon->query($all);
+
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -119,9 +122,33 @@ if(isset($_POST['update'])){
                     }
                           ?>
                    </div>
-                   
+                    <h5 style="margin-top:30px;"class="text-left">Other Users</h5>
                    <div id="other-user"> 
-                    
+                   <?php
+                            while($srow=$allusers->fetch_assoc()){
+                                $profilename = $srow["Username"];
+                                $profilepics = mysqli_query($dbcon,"SELECT * FROM `pictures` WHERE Username = '$profilename'");
+                                $picrow = mysqli_fetch_array($profilepics); 
+                                $url = $picrow['Profile'];
+                                if($url!=''){
+                                    $url = $picrow['Profile']; 
+                                }
+                                else{
+                                    $url = "img/profile_pic/default.png";
+                                }
+                                echo 
+                                    '<a href="profile.php?user='.$srow["Username"].'"><div class="row text-left mars-btm-20" id="other-lines">
+                                        <div class="col-3">
+                                            <img src="'.$url.'" class="rounded"  alt="">
+                                        </div>
+                                        <div class="col-9">
+                                            <h6 style="margin-bottom:0px; font-size:1.1em;">'.$srow["Name"].'</h6>
+                                            <p>@'.$srow["Username"].'</p>
+                                        </div>
+                                    </div></a>';
+                            }
+            
+                       ?>
                    </div>
                 </div>   
                 <div class="col-md-8 col-sm-12 mars-btm-20 text-md-left text-center text-lg-center">  

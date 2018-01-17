@@ -93,6 +93,17 @@
 body{
         background: #f1f1f1;
 }
+a#links > h5{
+    color: black !important;
+}
+a#links>h5:hover{
+    text-decoration: none;
+    text-decoration-line: none;
+    color: #243447 !important;
+}
+a:hover{
+    text-decoration: none !important; 
+}
 #home {
     padding-top: 100px;
     background: #f1f1f1;
@@ -101,8 +112,28 @@ body{
 #cover {
 	background: #f1f1f1;
 }
-#other-users{
-    margin-top: 50px;
+#other-user{
+    margin-top: 5px;
+    width: 100%;
+    padding: 20px;
+    padding-bottom: 0;
+    background: #fff;
+    box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+}
+#other-user img{
+	width: 45px;
+    height: 45px;
+    object-fit: cover;
+}
+#other-lines{
+    border-bottom: 1px solid rgba(128, 128, 128, 0.32) !important;
+}
+a{
+    color: #000;
+}
+#other-lines:last-child {
+	border: 0;
 }
 #cover {
     width: 100vw;

@@ -8,10 +8,10 @@ fetch(url,{method:'GET'})
         post.innerHTML += `<div  id="post-box">
                             <div class="row" id="pro-info">
                             <div class="col-2 col-lg-1 ">
-                                <img src="${response[i].Profile}" onerror="this.onerror=null;this.src='img/profile_pic/default.png';" class=" rounded-circle " width="50px" id="post-circle" />
+                               <a id="links" href="profile.php?user=${response[i].Username}"> <img src="${response[i].Profile}" onerror="this.onerror=null;this.src='img/profile_pic/default.png';" class=" rounded-circle " width="50px" id="post-circle" /></a>
                             </div>
                             <div class="col-10 col-lg-11" id="pro-name" style="text-align:left">
-                                <h5 style="margin-bottom:0;">${response[i].Name}</h5>
+                                <a id="links" href="profile.php?user=${response[i].Username}"> <h5 style="margin-bottom:0;">${response[i].Name}</h5></a>
                                 <p>@${response[i].Username}</p>
                             </div>
                             </div>

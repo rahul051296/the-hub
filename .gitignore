@@ -2,5 +2,5 @@
 # http://git-scm.com/docs/gitignore
 
 
-.img/profile_pic/
-.img/cover_pic/
+img/profile_pic/
+img/cover_pic/

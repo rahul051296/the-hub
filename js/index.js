@@ -13,3 +13,4 @@ document.forms.register.password2.onkeyup = () => {
         document.getElementById('submit').className = " btn btn-block btn-success mars-top-30";
     }
 };
+

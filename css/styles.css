@@ -90,11 +90,20 @@
     background: #243447;
     box-shadow: 1px 1px 5px 1px #000;
 }
-
-#home {
-    margin-top: 100px;
+body{
+        background: #f1f1f1;
 }
-
+#home {
+    padding-top: 100px;
+    background: #f1f1f1;
+    
+}
+#cover {
+	background: #f1f1f1;
+}
+#other-users{
+    margin-top: 50px;
+}
 #cover {
     width: 100vw;
     height: 300px;
@@ -115,12 +124,12 @@
     background-size: cover;
 }
 .home-pic{
-    box-shadow: 0px 0px 5px 0px #000;
+    //box-shadow: 0px 0px 5px 0px #000;
     background: #fff;
     object-fit: cover;
-    width: 230px;
-    height: 230px;
-    background-size: cover;
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+    height: 280px;
 }
 #home p{
     font-size: 0.8em;
@@ -134,17 +143,27 @@
     color: white;
     text-align: center;
 }
+#exp{
+    background: white;
+    border-radius: 10px;
+    padding-bottom: 5px;
+        box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);
+
+}
 #posts{
     width: 100%;
-    height: 300px;
-    border: 3px solid grey;
+    background: #fff; 
+    border-radius: 10px;
+    box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);
 }
 #profile-details {
     margin-top: 10px;
     text-align: center !important;
 }
-#settings{
-
+#post-circle{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
 }
 #settings-title{
     border: 4px solid #243447;
@@ -166,6 +185,12 @@ input.text-box, textarea{
     padding-bottom: 5px;
     overflow: hidden;
 }
+#home-textarea{
+    border: 0 !important;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    overflow: hidden;
+}
 input#fileToUpload{
     margin-bottom: 10px;
 }
@@ -182,6 +207,43 @@ input#fileToUpload{
     height: 100px;
     box-shadow: 0px 0px 10px 0px #000;
 }
+#post-box{
+    border-bottom: 1px solid grey;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+#post-box:last-child {
+	border-bottom: 0;
+}
+#post-box p{
+	font-size: 1em;
+}
+#post-box > div#pro-info {
+	padding-bottom: 10px;
+}
+.small-pic{
+    width: 100px;
+    height: 100px;
+    text-align: left;
+    object-fit: cover;
+        box-shadow: 0px 0px 10px 0px #000;
+
+}
+.mars-lft-5 {
+	margin-left: 5px;
+}
+#mb-view h5 {
+	font-size: 1.5em;
+}
+#mb-view h6 {
+	font-size: 0.8em;
+}
+#mb-view{
+    margin-bottom: 10px;
+}
 
 @media only screen and (max-width:767px) {
     #profile-head {
@@ -190,4 +252,17 @@ input#fileToUpload{
         color: white;
         text-align: center;
     }
+    #home {
+    padding-top: 80px;
+}
+}
+@media only screen and (max-width:360px){
+    .small-pic{
+      width:90px;
+        height: 90px;
+        object-fit: cover;
+    }
+    #pro-name {
+	padding-left: 25px;
+}
 }

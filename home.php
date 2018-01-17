@@ -17,6 +17,12 @@ if( !isset($_SESSION['username']) ) {
         $bio = $row['Bio'];
         $web = $row['Website'];
         $pprofilepic = $picrow['Profile'];
+if(isset($_POST['update'])){
+    $posted = mysqli_real_escape_string($dbcon, $_POST['posted']);
+    $insert="INSERT INTO posts (Username,Name,Post,Profile) values('$username','$name','$posted','$pprofilepic')";
+    $result=$dbcon->query($insert);
+    header('Location: home.php');
+}
        
 ?>
     <!DOCTYPE html>
@@ -78,9 +84,31 @@ if( !isset($_SESSION['username']) ) {
             </div>
             </div>
         </nav>
-        <section class="container" id="home">
+        <section id="home">
+          <article class="container">
            <div class="row ">
-               <div class="col-md-4  d-md-block mars-btm-20 text-center text-md-left">  
+              <div class="col-md-4 d-md-none d-block  text-left">
+                  <div class="row" id="mb-view">
+                      <div class="col-4">
+                          <img src=<?php if($pprofilepic!='' ) { echo "'$pprofilepic'"; } else{ echo "'img/profile_pic/default.png'"; } ?> class="img-responsive small-pic">
+                      </div>
+                        <div class="col-8 text-left " style="padding-left:0px;">
+                            <h5 class="mars-lft-5" ><?php echo $name; ?></h5>
+                            <h6 class="mars-lft-5">@<?php echo $username; ?></h6>
+                            <?php
+                    if(isset($web)){
+                        echo '<p><a class=" mars-lft-5" href="'.$web.'" target="_blank">'.$web.'</a></p>';
+                    }
+                          ?>
+                        </div>
+                        <div class="container">
+                            <p style="margin-bottom:5px; margin-top:10px;"><?php if(isset($bio)){echo $bio;} ?></p>
+
+                        </div>
+                  </div>
+              </div>
+               <div class="col-md-4 d-none d-md-block mars-btm-20 text-center"> 
+                   <div id="exp"> 
                     <img src=<?php if($pprofilepic!='' ) { echo "'$pprofilepic'"; } else{ echo "'img/profile_pic/default.png'"; } ?> class="img-responsive home-pic">
                     <h3 class="mars-top-10" style="margin-bottom:0px;"><?php echo $name; ?></h3>
                     <h6>@<?php echo $username; ?></h6>
@@ -90,22 +118,29 @@ if( !isset($_SESSION['username']) ) {
                         echo '<p><a href="'.$web.'" target="_blank">'.$web.'</a></p>';
                     }
                           ?>
+                   </div>
+                   
+                   <div id="other-user"> 
+                    
+                   </div>
                 </div>   
                 <div class="col-md-8 col-sm-12 mars-btm-20 text-md-left text-center text-lg-center">  
-                   <form action="">
-                    <textarea class="form-control" type="text" placeholder="Share your thoughts" name="post" style="resize:none; height:120px;"></textarea>
-                    <button type="submit" class="btn btn-block btn-outline-primary mars-top-10">POST</button>
+                   <form action="home.php" method="post" name="postForm">
+                    <textarea id="home-textarea"  class="form-control" type="text" placeholder="Share your thoughts" name="posted" style="resize:none; height:120px; box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);"></textarea>
+                    <button type="submit" name="update" class="btn btn-block btn-primary mars-top-10" style="box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);">POST</button>
                     </form> 
                     <div id="posts" class="mars-top-30">
+                    
                     </div> 
                 </div>   
            </div>
+            </article>
         </section>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
-        <!--        <script src="js/index.js"></script>-->
+         <script src="js/posts.js"></script>
     </body>
 
     </html>

@@ -15,7 +15,7 @@ if( !isset($_SESSION['username']) ) {
         $name = $row['Name'];
 
  if(isset($_GET['search'])){
-                     $term = $_GET['query'];
+                $term = $_GET['query'];
                 $sql = "SELECT * FROM users WHERE Name Like '%$term%';";
                 $result=$dbcon->query($sql);
  }
@@ -92,6 +92,12 @@ if( !isset($_SESSION['username']) ) {
                                 $profilepics = mysqli_query($dbcon,"SELECT * FROM `pictures` WHERE Username = '$profilename'");
                                 $picrow = mysqli_fetch_array($profilepics); 
                                 $url = $picrow['Profile'];
+                                if($url!=''){
+                                    $url = $picrow['Profile']; 
+                                }
+                                else{
+                                    $url = "img/profile_pic/default.png";
+                                }
                     echo ' <div class="col-md-4 col-sm-6 col-xs-12">
                        <a href="profile.php?user='.$srow["Username"].'"><div class="row mars-btm-20">
                        <div class="col-6" >

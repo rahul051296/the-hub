@@ -54,6 +54,7 @@ if( !isset($_SESSION['username']) ) {
             mysqli_query($dbcon,$sql);
             $response = "Changes have been Saved.";
         }
+            header('Location: settings.php');
     }
 ?>
     <!DOCTYPE html>
@@ -66,6 +67,8 @@ if( !isset($_SESSION['username']) ) {
         <title>Settings</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/styles.css">
+         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     </head>
 
     <body id="sets">
@@ -102,9 +105,9 @@ if( !isset($_SESSION['username']) ) {
 
                             <form action="search.php" method="get" name="searchForm">
                                 <div class="input-group">
-                                    <input type="text" name="query" id="search" class="form-control" placeholder="Search">
+                                    <input type="text" name="query"  class="search form-control" placeholder="Search">
                                     <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-custom" id="search" name="search">
+                                    <button type="submit" class="btn btn-custom search" id="" name="search">
 								<i class="fas fa-search"></i>
                         </button>
                                     </span>
@@ -128,7 +131,7 @@ if( !isset($_SESSION['username']) ) {
                                     <label>Edit Profile Picture</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="file" name="fileToUpload" id="fileToUpload">
+                                    <input type="file" name="profileToUpload" id="profileToUpload">
                                     <input type="submit" value="Upload Image" name="upload">
                                 </div>
                             </div>
@@ -142,7 +145,7 @@ if( !isset($_SESSION['username']) ) {
                                     <label>Edit Cover Picture</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="file" name="fileToUpload" id="fileToUpload">
+                                    <input type="file" name="coverToUpload" id="coverToUpload">
                                     <input type="submit" value="Upload Image" name="upload">
                                 </div>
                             </div>

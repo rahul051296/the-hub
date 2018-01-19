@@ -31,6 +31,8 @@ if( !isset($_SESSION['username']) ) {
         <title>Search</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/styles.css">
+         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     </head>
 
     <body>
@@ -67,9 +69,9 @@ if( !isset($_SESSION['username']) ) {
 
                             <form action="search.php" method="get" name="searchForm">
                                 <div class="input-group">
-                                    <input type="text" name="query" id="search" class="form-control" placeholder="Search">
+                                    <input type="text" name="query" id="" class="form-control search" placeholder="Search">
                                     <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-custom" id="search" name="search">
+                                    <button type="submit" class="btn btn-custom search" id="" name="search">
 								<i class="fas fa-search"></i>
                         </button>
                                     </span>

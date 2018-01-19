@@ -14,6 +14,8 @@ if(isset($_SESSION['username'])!=''){
     <title>The Hub</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
+     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body class="back1">

@@ -24,6 +24,10 @@ if( !isset($_SESSION['username']) ) {
         $pcoverpic = $picrow['Cover'];
         $pbio = $prow['Bio'];
         $pweb = $prow['Website'];
+    
+date_default_timezone_set('UTC');
+            $posts = "SELECT * FROM `posts` WHERE Username = '$profilename' ORDER BY Id DESC";
+            $allposts=$dbcon->query($posts);
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -37,6 +41,8 @@ if( !isset($_SESSION['username']) ) {
         </title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/styles.css">
+         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     </head>
 
     <body>
@@ -72,9 +78,9 @@ if( !isset($_SESSION['username']) ) {
                         <li class="nav-item">
                             <form action="search.php" method="get" name="searchForm">
                                 <div class="input-group">
-                                    <input type="text" name="query" id="search" class="form-control" placeholder="Search">
+                                    <input type="text" name="query" id="" class="form-control search" placeholder="Search">
                                     <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-custom" id="search" name="search">
+                                    <button type="submit" class="btn btn-custom search" id="" name="search">
 								<i class="fas fa-search"></i>
                         </button>
                                     </span>
@@ -110,6 +116,51 @@ if( !isset($_SESSION['username']) ) {
                     }
                           ?>
                 </div>
+                <div class="container">
+                    <div class="row" style="margin-top:50px; margin-bottom:50px;">
+                        <?php
+                    while($srow=$allposts->fetch_assoc()){ 
+                        if($pprofilepic!="") {$picurl=$pprofilepic;}
+                        else {$picurl = 'img/profile_pic/default.png';}
+                        $unix_timestamp = $srow["Time"];
+                
+                        $datetime = new DateTime("@$unix_timestamp");
+                        $datetime->setTimezone(new DateTimeZone('Asia/Kolkata'));
+                        if($username == $srow["Username"]){
+                            $option = '<span class="dropdown">
+                                <a href="#" data-toggle="dropdown"><i style="color: #737373;" class="fas fa-ellipsis-v"></i></a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Edit</a>
+                                    <a class="dropdown-item" href="deletePost.php?postId='.$srow["Id"].'">Delete</a>
+                                </div>
+                            </span>';
+                        }
+                        else{
+                            $option = '';
+                        }
+                    echo'
+                    <div id="post-box" class="col-12 col-md-8 offset-md-2">
+                            <div class="row" id="pro-info">
+                            <div class="col-2 col-md-2 col-lg-1 ">
+                               <a id="links" href="profile.php?user='.$srow["Username"].'" > <img src="'.$picurl.'" class=" rounded-circle " width="50px" id="post-circle" /></a>
+                            </div>
+                            <div class="col-8 col-md-9 col-lg-10" id="pro-name" style="text-align:left">
+                                <a id="links" href="profile.php?user='.$srow["Username"].'"> <h5 style="margin-bottom:0;">'.$srow["Name"].'</h5></a>
+                                <p style="font-size:0.75em;">'.$datetime->format('d M Y').' at '.$datetime->format('H:i').' hrs</p>
+                            </div>
+                            <div class="col-1 col-md-1 col-lg-1 text-right" style="float:right;" id="drop-circles">
+                                '.$option.'
+                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-11 offset-lg-1 col-md-10 offset-md-2">
+                                <p class="text-left text-md-left" >'.$srow["Post"].'</p>
+                                </div>
+                            </div></div>';
+                    }
+                    ?>
+                    </div>
+                </div>
             </div>
         </article>
         <?php 
@@ -120,6 +171,7 @@ if( !isset($_SESSION['username']) ) {
     </script>"; 
         }
         ?>
+
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>

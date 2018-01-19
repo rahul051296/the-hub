@@ -20,11 +20,11 @@ if( !isset($_SESSION['username']) ) {
         $pprofilepic = $picrow['Profile'];
 if(isset($_POST['update'])){
     $posted = mysqli_real_escape_string($dbcon, $_POST['posted']);
-    $insert="INSERT INTO posts (Username,Name,Post,Profile) values('$username','$name','$posted','$pprofilepic')";
+    $insert="INSERT INTO posts (Username,Name,Post,Time) values('$username','$name','$posted','".date('U')."')";
     $result=$dbcon->query($insert);
     header('Location: home.php');
 }
-            $all = "SELECT * FROM `users`";
+            $all = "SELECT * FROM `users` ORDER BY RAND() LIMIT 5";
             $allusers=$dbcon->query($all);
 
 ?>
@@ -38,6 +38,8 @@ if(isset($_POST['update'])){
         <title>Home</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/styles.css">
+         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     </head>
 
     <body>
@@ -74,9 +76,9 @@ if(isset($_POST['update'])){
 
                         <form action="search.php?" method="get" name="searchForm">
                        <div class="input-group">
-                        <input type="text" name="query" id="search" class="form-control" placeholder="Search">
+                        <input type="text" name="query" id="" class="form-control search" placeholder="Search">
                         <span class="input-group-btn">
-                                <button type="submit" class="btn btn-custom" id="search" name="search">
+                                <button type="submit" class="btn btn-custom search" id="" name="search">
 								<i class="fas fa-search"></i>
                         </button>
                         </span>
@@ -111,19 +113,20 @@ if(isset($_POST['update'])){
                   </div>
               </div>
                <div class="col-md-4 d-none d-md-block mars-btm-20 text-center"> 
-                   <div id="exp"> 
+                   <div id="exp" > <a href=<?php echo "profile.php?user=$username" ?>>
                     <img src=<?php if($pprofilepic!='' ) { echo "'$pprofilepic'"; } else{ echo "'img/profile_pic/default.png'"; } ?> class="img-responsive home-pic">
                     <h3 class="mars-top-10" style="margin-bottom:0px;"><?php echo $name; ?></h3>
                     <h6>@<?php echo $username; ?></h6>
-                    <p style="margin-bottom:5px;"><?php if(isset($bio)){echo $bio;} ?></p>
+                    <p style="margin-bottom:5px; padding:10px;" class="container"><?php if(isset($bio)){echo $bio;} ?></p>
                     <?php
                     if(isset($web)){
                         echo '<p><a href="'.$web.'" target="_blank">'.$web.'</a></p>';
                     }
                           ?>
+                       </a>
                    </div>
                     <h5 style="margin-top:30px;"class="text-left">Other Users</h5>
-                   <div id="other-user"> 
+                   <div id="other-user" class="container"> 
                    <?php
                             while($srow=$allusers->fetch_assoc()){
                                 $profilename = $srow["Username"];

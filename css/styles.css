@@ -56,6 +56,7 @@
 .mars-btm-10 {
     margin-bottom: 10px;
 }
+
 .mars-btm-20 {
     margin-bottom: 20px;
 }
@@ -63,18 +64,22 @@
 .mars-top-30 {
     margin-top: 30px;
 }
+
 .mars-top-10 {
     margin-top: 10px;
 }
+
 .btn-custom {
-	background: #fff;
+    background: #fff;
     border-radius: 0;
 }
-#search {
-	border-radius: 0;
+
+.search {
+    border-radius: 0;
     outline: 0;
     border: 0;
 }
+
 .title {
     border-bottom: 3px solid #fff;
     padding: 5px;
@@ -90,51 +95,63 @@
     background: #243447;
     box-shadow: 1px 1px 5px 1px #000;
 }
-body{
-        background: #f1f1f1;
+
+body {
+    background: #f1f1f1;
 }
-a#links > h5{
+
+a#links > h5 {
     color: black !important;
 }
-a#links>h5:hover{
+
+a#links > h5:hover {
     text-decoration: none;
     text-decoration-line: none;
     color: #243447 !important;
 }
-a:hover{
-    text-decoration: none !important; 
+
+a:hover {
+    text-decoration: none !important;
 }
+
 #home {
     padding-top: 100px;
     background: #f1f1f1;
-    
+
 }
+
 #cover {
-	background: #f1f1f1;
+    background: #f1f1f1;
 }
-#other-user{
-    margin-top: 5px;
-    width: 100%;
-    padding: 20px;
-    padding-bottom: 0;
-    background: #fff;
-    box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);
-    border-radius: 10px;
-}
-#other-user img{
-	width: 45px;
+
+#other-user img {
+    width: 45px;
     height: 45px;
     object-fit: cover;
 }
-#other-lines{
-    border-bottom: 1px solid rgba(128, 128, 128, 0.32) !important;
+
+#other-user {
+    border-radius: 10px;
 }
-a{
+
+#other-lines {
+
+    box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
+
+    background: #fff;
+    border-radius: 5px;
+    padding-top: 10px;
+    margin-bottom: 5px; //border-bottom: 1px solid rgba(128, 128, 128, 0.32) !important;
+}
+
+#other-lines:hover {
+    box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2);
+}
+
+a {
     color: #000;
 }
-#other-lines:last-child {
-	border: 0;
-}
+
 #cover {
     width: 100vw;
     height: 300px;
@@ -142,8 +159,8 @@ a{
     background-position: center !important;
     background-size: cover !important;
     background-attachment: fixed !important;
-/*    background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url(../img/cover_pic/01.jpg);*/
-    background: #8b8b8b;
+    /*    background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url(../img/cover_pic/01.jpg);*/
+    background: linear-gradient(to bottom, #f7d232, #f7d232);
 }
 
 #profile-pic {
@@ -154,7 +171,8 @@ a{
     height: 200px;
     background-size: cover;
 }
-.home-pic{
+
+.home-pic {
     //box-shadow: 0px 0px 5px 0px #000;
     background: #fff;
     object-fit: cover;
@@ -162,120 +180,171 @@ a{
     width: 100%;
     height: 280px;
 }
-#home p{
+
+#home p {
     font-size: 0.8em;
 }
-#home h6{
+
+#home h6 {
     font-weight: normal;
 }
+
 #profile-head {
     position: relative;
     padding-top: 15%;
     color: white;
     text-align: center;
 }
-#exp{
+
+#exp {
     background: white;
     border-radius: 10px;
-    padding-bottom: 5px;
-        box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);
+    padding-bottom: 5px; //box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);
+    box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
 
 }
-#posts{
-    width: 100%;
-    background: #fff; 
-    border-radius: 10px;
-    box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);
+
+#exp:hover {
+    box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2);
 }
+
+#posts {
+    width: 100%; //border-radius: 10px;
+    //box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);
+}
+
 #profile-details {
     margin-top: 10px;
     text-align: center !important;
 }
-#post-circle{
+
+div#exp a:hover {
+    color: #000;
+}
+
+#post-circle {
     width: 50px;
     height: 50px;
     object-fit: cover;
 }
-#settings-title{
+
+#settings-title {
     border: 4px solid #243447;
     padding: 10px;
     background: #243447;
     color: #fff;
 }
-body#sets{
+
+body#sets {
+    overflow-x: hidden;
     border: 4px solid #243447;
 }
+
 #settings-content {
     padding: 50px;
     height: 100%;
     background: #fff;
 }
-input.text-box, textarea{
+
+input.text-box,
+textarea {
     border: 3px solid rgba(106, 106, 106, 0.3) !important;
     padding-top: 5px;
     padding-bottom: 5px;
     overflow: hidden;
 }
-#home-textarea{
+
+#home-textarea {
     border: 0 !important;
     padding-top: 5px;
     padding-bottom: 5px;
     overflow: hidden;
 }
-input#fileToUpload{
+
+input#fileToUpload {
     margin-bottom: 10px;
 }
-#search-results{
+
+#search-results {
     margin-top: 5%;
     padding: 20px;
 }
+
 #search-results a:hover {
-	text-decoration: none;
+    text-decoration: none;
 }
-#search-pic{
+
+#search-pic {
     object-fit: cover;
     width: 100px;
     height: 100px;
     box-shadow: 0px 0px 10px 0px #000;
 }
-#post-box{
-    border-bottom: 1px solid grey;
+
+#post-box {
+    //border-bottom: 1px solid rgba(128, 128, 128, 0.32);
+    border-radius: 10px;
+    box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
+
+    background: #fff;
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 15px;
-    margin-bottom: 15px;
-    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
+
+#post-box:hover {
+    box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2);
+    cursor: pointer;
+}
+
 #post-box:last-child {
-	border-bottom: 0;
+    border-bottom: 0;
 }
-#post-box p{
-	font-size: 1em;
+
+#post-box p {
+    font-size: 1em;
 }
+
 #post-box > div#pro-info {
-	padding-bottom: 10px;
+    padding-bottom: 10px;
 }
-.small-pic{
+
+.small-pic {
     width: 100px;
     height: 100px;
     text-align: left;
     object-fit: cover;
-        box-shadow: 0px 0px 10px 0px #000;
+    box-shadow: 0px 0px 10px 0px #000;
 
 }
+
 .mars-lft-5 {
-	margin-left: 5px;
+    margin-left: 5px;
 }
+
 #mb-view h5 {
-	font-size: 1.5em;
+    font-size: 1.5em;
 }
+
 #mb-view h6 {
-	font-size: 0.8em;
+    font-size: 0.8em;
 }
-#mb-view{
+
+#mb-view {
     margin-bottom: 10px;
 }
-
+.comm-box{
+    padding-bottom: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e2e2e2;
+    border-right: 1px solid #e2e2e2;
+}
+.comm-box:hover {
+	background: #fafafa;
+    border-radius: 0 0 10px 10px ;
+}
 @media only screen and (max-width:767px) {
     #profile-head {
         position: relative;
@@ -283,17 +352,21 @@ input#fileToUpload{
         color: white;
         text-align: center;
     }
+    div#drop-circles {
+        padding-left: 30px !important;
+    }
     #home {
-    padding-top: 80px;
+        padding-top: 80px;
+    }
 }
-}
-@media only screen and (max-width:360px){
-    .small-pic{
-      width:90px;
+
+@media only screen and (max-width:360px) {
+    .small-pic {
+        width: 90px;
         height: 90px;
         object-fit: cover;
     }
     #pro-name {
-	padding-left: 25px;
-}
+        padding-left: 25px;
+    }
 }

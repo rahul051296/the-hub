@@ -19,6 +19,7 @@ if(isset($_POST['login'])){
         $count = mysqli_num_rows($result);
         if($count == 1 && $row['Password']==$password){
             $_SESSION['username'] = $row['Username'];
+            $_SESSION['name'] = $row['Name'];
             header("Location: home.php");
         }   
         else{

@@ -118,11 +118,12 @@ if( !isset($_SESSION['username']) ) {
                 </div>
             </div>
         </nav>
-        <section class="container-fluid" id="settings">
-            <div class="row">
-                <div class="col-12 text-center" id="settings-title">
+        <div class="col-12 text-center" id="settings-title">
                     <h1 class="title">Settings</h1>
                 </div>
+        <section class="container" id="settings">
+            <div class="row">
+                
                 <div class="col-12 text-left container" id="settings-content">
                     <div class="mars-btm-20">
                         <form action="uploadPic.php" method="post" enctype="multipart/form-data">
@@ -154,23 +155,23 @@ if( !isset($_SESSION['username']) ) {
                     <form action="settings.php" name="settings" method="post">
                         <div class="row mars-btm-20">
                             <label class="col-4">Change Name</label>
-                            <input type="text" style="border: 3px solid #f1f1f1;" class="col-8 text-box" placeholder="Enter a Name" name="name">
+                            <input type="text" style="border: 3px solid #f1f1f1;" class="col-8 text-box1" placeholder="Enter a Name" name="name">
                         </div>
                         <div class="row mars-btm-20">
                             <label class="col-4 ">Change E-Mail</label>
-                            <input class="col-8 text-box" type="text" placeholder="Enter an Email Id" name="email">
+                            <input class="col-8 text-box1" type="text" style="border: 3px solid #f1f1f1;" placeholder="Enter an Email Id" name="email">
                         </div>
                         <div class="row mars-btm-20">
                             <label class="col-4 ">Change Password</label>
-                            <input class="col-8 text-box"  type="password" placeholder="Enter your new Password" name="password">
+                            <input class="col-8 text-box1" style="border: 3px solid #f1f1f1;" type="password" placeholder="Enter your new Password" name="password">
                         </div>
                         <div class="row mars-btm-20">
                             <label class="col-4 ">Edit Website</label>
-                            <input class="col-8 text-box" type="text" placeholder="Enter your Website URL" name="website">
+                            <input class="col-8 text-box1" style="border: 3px solid #f1f1f1;" type="text" placeholder="Enter your Website URL" name="website">
                         </div>
                         <div class="row mars-btm-20">
                             <label class="col-4">Edit Bio</label>
-                            <textarea class="col-8 text-box" type="text" placeholder="Add your Bio" name="bio" style="resize:none; height:150px;"></textarea>
+                            <textarea class="col-8 text-box1" type="text" placeholder="Add your Bio" name="bio" style="resize:none; height:150px;"></textarea>
                         </div>
                         <div class="row mars-btm-20 text-center">
                             <div class="col-4 offset-4 mars-btm-20">

@@ -22,6 +22,7 @@ if(isset($_POST['update'])){
     $posted = mysqli_real_escape_string($dbcon, $_POST['posted']);
     $insert="INSERT INTO posts (Username,Name,Post,Time) values('$username','$name','$posted','".date('U')."')";
     $result=$dbcon->query($insert);
+    
     header('Location: home.php');
 }
             $all = "SELECT * FROM `users` ORDER BY RAND() LIMIT 5";
@@ -150,7 +151,6 @@ if(isset($_POST['update'])){
                                         </div>
                                     </div></a>';
                             }
-            
                        ?>
                    </div>
                 </div>   
@@ -166,6 +166,7 @@ if(isset($_POST['update'])){
            </div>
             </article>
         </section>
+        
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>

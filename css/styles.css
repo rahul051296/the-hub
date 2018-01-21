@@ -114,10 +114,15 @@ a:hover {
     text-decoration: none !important;
 }
 
-#home {
+#home,
+#comments {
     padding-top: 100px;
     background: #f1f1f1;
 
+}
+
+div.txt-area {
+    //padding: 20px;
 }
 
 #cover {
@@ -244,9 +249,12 @@ body#sets {
     padding: 50px;
     height: 100%;
     background: #fff;
+    border-radius: 10px;
 }
-
-input.text-box,
+a#click p:hover{
+    color: #000 !important;
+}
+input.text-box1,
 textarea {
     border: 3px solid rgba(106, 106, 106, 0.3) !important;
     padding-top: 5px;
@@ -306,6 +314,9 @@ input#fileToUpload {
 #post-box p {
     font-size: 1em;
 }
+#post-box p:hover  {
+    color: #000;
+}
 
 #post-box > div#pro-info {
     padding-bottom: 10px;
@@ -335,16 +346,82 @@ input#fileToUpload {
 #mb-view {
     margin-bottom: 10px;
 }
-.comm-box{
+
+.comm-box,
+.comm-box-1 {
     padding-bottom: 15px;
     padding-top: 15px;
     border-top: 1px solid #e2e2e2;
     border-right: 1px solid #e2e2e2;
 }
-.comm-box:hover {
-	background: #fafafa;
-    border-radius: 0 0 10px 10px ;
+
+.comm-box:last-child,
+.comm-box-1:last-child {
+    border-right: 0;
 }
+
+.comm-box-1 {
+    border-bottom: 1px solid #e2e2e2;
+
+}
+
+.comm-box:hover,
+.comm-box-1:hover {
+    background: #fafafa;
+        color: red !important;
+
+    border-radius: 0 0 10px 10px;
+}
+
+.comm-box > a:hover,
+.comm-box-1 > a:hover {
+    color: red !important;
+}
+
+.comments-box {
+    padding: 15px;
+    padding-bottom: 0;
+    background: #fff;
+    margin-top: 7px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
+}
+
+.cb {
+    border-radius: 10px;
+    border: 0;
+}
+
+.text-box {
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 10px;
+    box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
+}
+
+#settings {
+    box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
+    margin-top: 20px;
+    margin-bottom: 40px;
+    border-radius: 10px !important;
+}
+
+.comments-box:hover,
+.text-box:hover, #settings:hover {
+    box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2);
+
+}
+
+.main-comments {
+    margin-bottom: 50px;
+}
+
+.comment-circle {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
 @media only screen and (max-width:767px) {
     #profile-head {
         position: relative;
@@ -355,7 +432,8 @@ input#fileToUpload {
     div#drop-circles {
         padding-left: 30px !important;
     }
-    #home {
+    #home,
+    #comments {
         padding-top: 80px;
     }
 }

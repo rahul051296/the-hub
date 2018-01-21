@@ -25,7 +25,7 @@ if( !isset($_SESSION['username']) ) {
         $pbio = $prow['Bio'];
         $pweb = $prow['Website'];
     
-date_default_timezone_set('UTC');
+
             $posts = "SELECT * FROM `posts` WHERE Username = '$profilename' ORDER BY Id DESC";
             $allposts=$dbcon->query($posts);
 ?>

@@ -18,10 +18,12 @@ if(isset($_SESSION['username'])!=''){
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
-<body class="back1">
+<body class="back2">
     <nav class="navbar navbar-expand-md bg-custom navbar-dark">
             <!-- Brand -->
-            <a class="navbar-brand" href="index.php">The Hub</a>
+                        <div class="container">
+            <a class="navbar-brand" href="home.php">The Hub</a>
+
 
             <!-- Toggler/collapsibe Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -36,10 +38,11 @@ if(isset($_SESSION['username'])!=''){
                         <a class="nav-link text-center" href="login.php">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-center" href="signup.php">Register</a>
+                        <a class="nav-link text-center" href="signup.php">Sign Up</a>
                     </li>
                 </ul>
             </div>
+        </div>
         </nav>
         <div class="jumbotron">
                <h1 class="text-center">Join the World's Greatest Social Media Hub!</h1>

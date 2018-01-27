@@ -105,9 +105,9 @@ if( !isset($_SESSION['username']) ) {
 
                             <form action="search.php" method="get" name="searchForm">
                                 <div class="input-group">
-                                    <input type="text" name="query"  class="search form-control" placeholder="Search">
+                                    <input type="text" name="query"  class="search-1 form-control" placeholder="Search">
                                     <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-custom search" id="" name="search">
+                                    <button type="submit" class="btn btn-custom search-2" id="" name="search">
 								<i class="fas fa-search"></i>
                         </button>
                                     </span>
@@ -121,19 +121,20 @@ if( !isset($_SESSION['username']) ) {
         <div class="col-12 text-center" id="settings-title">
                     <h1 class="title">Settings</h1>
                 </div>
-        <section class="container" id="settings">
-            <div class="row">
+        <section class="container">
+           <div class="col-12 col-lg-8 offset-lg-2 "  id="settings">
+            <div class="">
                 
-                <div class="col-12 text-left container" id="settings-content">
+                <div class="text-left " id="settings-content">
                     <div class="mars-btm-20">
                         <form action="uploadPic.php" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-4">
-                                    <label>Edit Profile Picture</label>
+                                    <label class="mars-top-10">Edit Profile Picture</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="file" name="profileToUpload" id="profileToUpload">
-                                    <input type="submit" value="Upload Image" name="upload">
+                                    <input type="file" class="mars-top-10" name="profileToUpload" id="profileToUpload">
+                                    <input type="submit"class="mars-top-10" value="Upload Image" name="upload">
                                 </div>
                             </div>
                         </form>
@@ -143,39 +144,37 @@ if( !isset($_SESSION['username']) ) {
                         <form action="uploadCover.php" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-4">
-                                    <label>Edit Cover Picture</label>
+                                    <label class="mars-top-10">Edit Cover Picture</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="file" name="coverToUpload" id="coverToUpload">
-                                    <input type="submit" value="Upload Image" name="upload">
+                                    <input type="file" class="mars-top-10" name="coverToUpload" id="coverToUpload">
+                                    <input type="submit" class="mars-top-10" value="Upload Image" name="upload">
                                 </div>
                             </div>
                         </form>
                     </div>
                     <form action="settings.php" name="settings" method="post">
                         <div class="row mars-btm-20">
-                            <label class="col-4">Change Name</label>
-                            <input type="text" style="border: 3px solid #f1f1f1;" class="col-8 text-box1" placeholder="Enter a Name" name="name">
+                            
+                            <input type="text"  class="col-12 text-box1 " placeholder="Change your Name" name="name">
                         </div>
                         <div class="row mars-btm-20">
-                            <label class="col-4 ">Change E-Mail</label>
-                            <input class="col-8 text-box1" type="text" style="border: 3px solid #f1f1f1;" placeholder="Enter an Email Id" name="email">
+                            
+                            <input class="col-12 text-box1 " type="text"  placeholder="Change your Email Id" name="email">
                         </div>
                         <div class="row mars-btm-20">
-                            <label class="col-4 ">Change Password</label>
-                            <input class="col-8 text-box1" style="border: 3px solid #f1f1f1;" type="password" placeholder="Enter your new Password" name="password">
+                            <input class="col-12 text-box1 " style="border: 3px solid #f1f1f1;" type="password" placeholder="Change your new Password" name="password">
                         </div>
                         <div class="row mars-btm-20">
-                            <label class="col-4 ">Edit Website</label>
-                            <input class="col-8 text-box1" style="border: 3px solid #f1f1f1;" type="text" placeholder="Enter your Website URL" name="website">
+                            <input class="col-12 text-box1" style="border: 3px solid #f1f1f1;" type="text" placeholder="Add your Website URL" name="website">
                         </div>
                         <div class="row mars-btm-20">
-                            <label class="col-4">Edit Bio</label>
-                            <textarea class="col-8 text-box1" type="text" placeholder="Add your Bio" name="bio" style="resize:none; height:150px;"></textarea>
+                            
+                            <textarea class="col-12 text-box1 " type="text" placeholder="Add your Bio" name="bio" style="resize:none; height:150px;"></textarea>
                         </div>
                         <div class="row mars-btm-20 text-center">
-                            <div class="col-4 offset-4 mars-btm-20">
-                                <input type="submit" class="btn btn-primary mars-top-30" value="Save Changes" id="save" name="save">
+                            <div class="col-12 mars-btm-20">
+                                <input type="submit" class="btn btn-primary btn-block mars-top-30" value="Save Changes" id="save" name="save">
                             </div>
                         </div>
                     </form>
@@ -189,6 +188,7 @@ if( !isset($_SESSION['username']) ) {
 
 
                 </div>
+            </div>
             </div>
         </section>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

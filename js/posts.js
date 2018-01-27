@@ -1,3 +1,7 @@
+//SELECT followers.Followername, posts.Post FROM followers,posts WHERE followers.Username = "Rahul0596" AND posts.Username = followers.Followername;
+
+//SELECT (SELECT likes.Liked FROM likes WHERE likes.postId=posts.id AND likes.Username='Rohan1304') as Liked,(SELECT COUNT(Liked) FROM likes WHERE likes.postId = posts.Id AND likes.Liked=1) as LikeCount, (SELECT COUNT(COMMENT) FROM comments WHERE postId = posts.id) as CommentCount, posts.Id, posts.Username, posts.Name, posts.Post, posts.Time, pictures.profile FROM pictures, posts,followers,tags WHERE pictures.Username = posts.Username AND followers.Username ='Rohan1304' AND posts.Username = followers.Follower AND posts.Post LIKE CONCAT(CONCAT('%',tags.Tag),'%') AND tags.Username = 'Rohan1304' ORDER BY Id
+
 
 let post = document.getElementById("posts");
 var xhttp = new XMLHttpRequest();
@@ -5,7 +9,7 @@ xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
        
         response = JSON.parse(xhttp.responseText);
-        
+        console.log(response);
             for(let i=response.length; i>=1; i--){
         let day = uToTime(response[i].Time);
         fetch(`like.php?postId=${response[i].Id}&username=${response.user}&liked=0`,{method:'GET'});
@@ -39,6 +43,17 @@ xhttp.onreadystatechange = function() {
                         let red = document.getElementById("like"+i).style.color = "red";
                 }
     }
+        if(response.length == 0){
+            post.innerHTML = `
+                                <div id="empty-msg" class="text-center shadow">
+                                    <h3> Your Newsfeed seems Empty. Follow other users to get started.</h3>
+                                    <i class="far fa-4x fa-frown"></i>
+                                    <div class="mars-top-30">
+                                    <button class="btn btn-outline-primary btn-lg" onclick="location.href = 'users.php';">Find Users</button>
+                                    </div>
+                                </div>
+                                `;
+        }
     }
 };
 xhttp.open("GET", "./getposts.php", true);

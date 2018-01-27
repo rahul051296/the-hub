@@ -1,9 +1,10 @@
 <?php
      session_start();
- if (!isset($_SESSION['userEmail'])) { 
+ if (!isset($_SESSION['username'])) { 
   header("Location: login.php");
  }
-  unset($_SESSION['userEmail']); 
+  unset($_SESSION['username']); 
+  unset($_SESSION['name']); 
   session_unset();
   session_destroy();
   header("Location: index.php");

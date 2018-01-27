@@ -1,9 +1,9 @@
 <?php
     session_start();
-if( !isset($_SESSION['username']) ) {
-        header("Location: login.php");
-        exit;
- }
+    if( !isset($_SESSION['username']) ) {
+            header("Location: login.php");
+            exit;
+     }
     include 'dbconnect.php';
     $username = $_SESSION['username'];
     $name = $_SESSION['name'];
@@ -11,11 +11,9 @@ if( !isset($_SESSION['username']) ) {
          die('Error Connecting to database');
     }
 
- if(isset($_GET['search'])){
-                $term = $_GET['query'];
-                $sql = "SELECT DISTINCT users.*, (SELECT COUNT(followers.Follower) FROM followers WHERE users.Username = followers.Follower AND followers.Username = '$username') as FollowTest FROM users,followers WHERE followers.Username='$username' AND users.Name LIKE '%$term%' OR users.Username LIKE '%$term%' AND users.Username != '$username'"; 
-                $result=$dbcon->query($sql);
- }
+    $sql = "SELECT DISTINCT users.*, (SELECT COUNT(followers.Follower) FROM followers WHERE users.Username = followers.Follower AND followers.Username = '$username') as FollowTest FROM users,followers WHERE followers.Username='$username'";
+    $result=$dbcon->query($sql);
+ 
       
 ?>
     <!DOCTYPE html>
@@ -81,13 +79,14 @@ if( !isset($_SESSION['username']) ) {
         </nav>
         <article >
             <div class="col-12 text-center" id="settings-title">
-                    <h1 class="title">Search</h1>
+                    <h1 class="title">Other Users</h1>
                 </div>
             <section class="container"id="search-results">
                      <div class="row">
                          <?php
-                            while($row=$result->fetch_assoc()){
-                                if($row["FollowTest"] == 1){
+                            while($srow=$result->fetch_assoc()){
+                                
+                                if($srow["FollowTest"] == 1){
                                     $btn = '<h5><span class="badge badge-primary" style="font-weight: 100 !important;">Following <i style="font-size:1em;" class="fas fa-1x fa-check-circle"></i>
                                     </span></h5>';
                                 }
@@ -95,7 +94,7 @@ if( !isset($_SESSION['username']) ) {
                                     $btn = '<h5 style="font-weight:normal;"><span class="badge badge-secondary" style="font-weight: 100 !important;">Follow <i style="font-size:1em;" class="fas fa-1x fa-plus-circle"></i>
                                     </span></h5> ';
                                 }
-                                $profilename = $row["Username"];
+                                $profilename = $srow["Username"];
                                 $profilepics = mysqli_query($dbcon,"SELECT * FROM `pictures` WHERE Username = '$profilename'");
                                 $picrow = mysqli_fetch_array($profilepics); 
                                 $url = $picrow['Profile'];
@@ -107,13 +106,13 @@ if( !isset($_SESSION['username']) ) {
                                 }
                     echo ' <div class="col-lg-4 col-md-6 col-12  ">
                     <div class="boxes">
-                       <a href="profile.php?user='.$row["Username"].'"><div class="row mars-btm-20">
+                       <a href="profile.php?user='.$srow["Username"].'"><div class="row mars-btm-20">
                        <div class="col-lg-4 col-md-4 col-4" >
                         <img src="'.$url.'" id="search-pic" class="img-responsive" alt="">
                            </div>
                         <div class="col-lg-8 col-md-8 col-8 pads-top-10">
-                        <h5 class="" style="margin-bottom:0">'.$row["Name"].'</h5>
-                        <p style="font-size:0.8em; margin-bottom:10px">@'.$row["Username"].'</p>
+                        <h5 class="" style="margin-bottom:0">'.$srow["Name"].'</h5>
+                        <p style="font-size:0.8em; margin-bottom:10px;">@'.$srow["Username"].'</p>
                         '.$btn.'
                            </div>
                         </div></a>

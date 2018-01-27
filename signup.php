@@ -25,11 +25,13 @@ session_start();
                     if(!mysqli_query($dbcon, $sqlinsert1))
                     {
                     
-                    $msg = "Email ID already exists.";
+                    $msg = "Email ID or Username already exists.";
                     }
                 else
                 {
                     mysqli_query($dbcon, $sqlinsert2);
+                    $self="INSERT INTO followers (Username, Follower) values ('$username','$username')";
+                    $dbcon->query($self);
                     $msg ="Account created successfully. Click <a href='login.php'>here</a> to Login.";
                 }
          
@@ -50,8 +52,10 @@ session_start();
     </head>
 
     <body class="back1">
-        <nav class="navbar navbar-expand-md bg-custom navbar-dark">
+        <nav class="navbar navbar-expand-md bg-custom-2 navbar-dark">
             <!-- Brand -->
+                        <div class="container">
+
             <a class="navbar-brand" href="index.php">The Hub</a>
 
             <!-- Toggler/collapsibe Button -->
@@ -68,32 +72,37 @@ session_start();
                     </li>
                 </ul>
             </div>
+            </div>
         </nav>
+        <div class="col-12 text-center" id="settings-title">
+                    <h1 class="title">SIGN UP</h1>
+                </div>
         <section class="container">
             <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <form id="register" method="post" name="register" action="signup.php">
-                        <h1 class="text-center title">SIGN-UP</h1>
+                <div class="col-md-6 offset-md-3">
+                    <form  method="post" name="register" action="signup.php">
+                       <div id="register">
                         <div class="row mars-btm-10">
-                            <label class="col-4" for="name">Name</label><input type="text" class="col-8" placeholder="Enter a Name" name="name" required>
+                            <input type="text" class="col-12 text-box1" placeholder="Enter Name" name="name" required>
                         </div>
                         <div class="row mars-btm-10">
-                            <label class="col-4" for="email">E-Mail</label><input class="col-8" type="text" placeholder="Enter an Email Id" name="email" required>
+                            <input class="col-12 text-box1" type="text" placeholder="Enter Email Id" name="email" required>
                         </div>
                         <div class="row mars-btm-10">
-                            <label class="col-4" for="tel">Username</label><input class="col-8" type="text" placeholder="Enter a Username" name="username" required>
+                            <input class="col-12 text-box1 " type="text" placeholder="Enter Username" name="username" required>
                             
                         </div>
                         <div class="row mars-btm-10">
-                            <label class="col-4" for="pass">Password</label><input class="col-8" type="password" placeholder="Enter a Password" name="password" required>
+                            <input class="col-12 text-box1" type="password" placeholder="Enter Password" name="password" required>
                         </div>
                         <div class="row mars-btm-10">
-                            <label class="col-4" for="password2">Re-Enter Password</label><input class="col-8" type="password" placeholder="Enter a Password again" name="password2" required>
+                            <input class="col-12 text-box1" type="password" placeholder="Re-Enter Password" name="password2" required>
                         </div>
                         
                         <div class="text-center" id="passErr"></div>
-                        <input type="submit" class="btn btn-block btn-success mars-top-30" value="Submit" id="submit" name="submit">
-                        <p class="text-center">
+                        </div>
+                        <input type="submit" class="btn btn-block btn-primary mars-top-10 shadow" value="Submit" id="submit" name="submit">
+                        <p class="text-center text-danger">
                             <?php 
                     if(isset($msg)){
                     echo $msg; 

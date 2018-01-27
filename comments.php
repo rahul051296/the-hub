@@ -7,20 +7,16 @@ $postId = $_REQUEST["postId"];
     if(!$dbcon){
          die('Error Connecting to database');
     }
-    $postQuery = mysqli_query($dbcon,"SELECT * FROM posts WHERE ID = '$postId'");
+    $postQuery = mysqli_query($dbcon,"SELECT posts.*, pictures.Profile FROM posts,pictures WHERE ID = '$postId' AND posts.Username = pictures.Username");
     $posted = mysqli_fetch_array($postQuery);
     $uname = $posted["Username"];
     $postedData = $posted["Post"]; 
+    $postedname = $posted["Name"]; 
+    $postedprofile = $posted["Profile"];
 
-    $commentQuery = "SELECT * FROM `comments` WHERE PostId ='$postId' ORDER BY CommentId DESC";
+    $commentQuery = "SELECT comments.*, pictures.Profile, users.Name FROM comments,pictures, users WHERE PostId ='$postId' AND comments.Username = pictures.Username AND users.Username= pictures.Username ORDER BY CommentId";
     $allcomments=$dbcon->query($commentQuery);
-    $commentcountquery = mysqli_query($dbcon,"SELECT COUNT(COMMENT) FROM comments
-        WHERE postId = '$postId'");
-        $commentcount = mysqli_fetch_array($commentcountquery);
-    $userQuery = mysqli_query($dbcon,"SELECT users.Name, pictures.Profile FROM users,pictures WHERE pictures.Username = '$uname' AND users.Username = '$uname'");
-    $userRow = mysqli_fetch_array($userQuery);
-    $postedname = $userRow["Name"]; 
-    $postedprofile = $userRow["Profile"];
+
 
     if(isset($_POST["comment"])){
         $commented = mysqli_real_escape_string($dbcon, $_POST['commentbox']);
@@ -83,9 +79,9 @@ $postId = $_REQUEST["postId"];
                         <li class="nav-item">
                             <form action="search.php" method="get" name="searchForm">
                                 <div class="input-group">
-                                    <input type="text" name="query" id="" class="form-control search" placeholder="Search">
+                                    <input type="text" name="query" id="" class="form-control search-1" placeholder="Search">
                                     <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-custom search" id="" name="search">
+                                    <button type="submit" class="btn btn-custom search-2" id="" name="search">
 								<i class="fas fa-search"></i>
                         </button>
                                     </span>
@@ -99,8 +95,12 @@ $postId = $_REQUEST["postId"];
         <section id="comments">
             <div class="container">
                 <?php
-                    if($postedprofile!="") {$picurl=$postedprofile;}
-                        else {$picurl = 'img/profile_pic/default.png';}
+                    if($postedprofile!=""){
+                        $picurl=$postedprofile;
+                    }
+                        else{
+                            $picurl = 'img/profile_pic/default.png';
+                        }
                         $unix_timestamp = $posted["Time"];
                         $datetime = new DateTime("@$unix_timestamp");
                         $datetime->setTimezone(new DateTimeZone('Asia/Kolkata'));
@@ -120,16 +120,12 @@ $postId = $_REQUEST["postId"];
                                 <p class="text-left text-md-left" >'.$postedData.'</p>
                             </div>
                         </div>
-                        <div class="row text-center ">
-                            <div class="col-6 comm-box-1"><a href="#"><div onclick="like();"><i class="fas fa-heart"></i> Like </div></a></div>
-                            <div class="col-6 comm-box-1"><a href="comments.php?postId=${response[i].Id}"><div><i class="fas fa-comment"></i> Comment  ('.$commentcount["COUNT(COMMENT)"].')</div></a></div>
-                        </div>
                         </div>
                         <div class ="">
                         <div class="col-12 col-md-8 offset-md-2  text-box">
-                            <form class="form-control cb" action="comments.php?postId='.$postId.'" method="post">
+                            <form class="form-control cb" action="comments.php?postId='.$postId.'#end" method="post">
                                 <div class="">
-                                <textarea placeholder="Share your comments" name="commentbox" style="width:100%; resize:none; height:60px; padding:10px;"></textarea>
+                                <textarea placeholder="Share your comments" name="commentbox" style="width:100%; resize:none; height:60px; padding:10px;" required></textarea>
                                 <button type="submit" name="comment" class="btn btn-primary btn-block">Comment</button
                                 </div>
                             </form>
@@ -141,35 +137,34 @@ $postId = $_REQUEST["postId"];
                     ?>
                     <div class="main-comments">
                         <?php
-                    while($srow=$allcomments->fetch_assoc()){ 
+                    while($row=$allcomments->fetch_assoc()){ 
                         
-                        $userid = $srow["Username"];
-                        $unix = $srow["Time"];
+                        $unix = $row["Time"];
                         $date = new DateTime("@$unix");
                         $date->setTimezone(new DateTimeZone('Asia/Kolkata'));
-                $assets = mysqli_query($dbcon,"SELECT users.Name, pictures.Profile FROM users,pictures WHERE pictures.Username='$userid' AND users.Username = '$userid'");
-                        $pic = mysqli_fetch_array($assets);
-                        
-                        $picurl = $pic["Profile"];
-                        if($picurl!="") {$picurl=$picurl;}
-                        else {$picurl = 'img/profile_pic/default.png';}
-                        
+        
+                        $picurl = $row["Profile"];
+                        if($picurl!=""){
+                            $picurl=$picurl;
+                        }
+                        else{
+                            $picurl = 'img/profile_pic/default.png';
+                        }
                         echo '
-                        
                         <div class="comments-box col-12 col-md-8 offset-md-2">
                         <div class="row">
                             <div class="col-2 col-md-2 col-lg-1 ">
-                               <a id="links" href="profile.php?user='.$srow["Username"].'" > <img src="'.$picurl.'" class=" rounded-circle comment-circle" /></a>
+                               <a id="links" href="profile.php?user='.$row["Username"].'" > <img src="'.$picurl.'" class=" rounded-circle comment-circle" /></a>
                             </div>
                             <div class="col-8 col-md-9 col-lg-10" id="pro-name" style="text-align:left">
-                                <a id="links" href="profile.php?user='.$srow["Username"].'"> <h6 style="margin-bottom:0;">'.$pic["Name"].'</h6></a>
+                                <a id="links" href="profile.php?user='.$row["Username"].'"> <h6 style="margin-bottom:0;">'.$row["Name"].'</h6></a>
                                 <p style="font-size:0.65em;">'.$date->format('d M Y').' at '.$date->format('H:i').'hrs</p>
                             </div>
 
                         </div>
                         <div class="row">
                                 <div class="col-11 offset-lg-1 col-md-10 offset-md-2">
-                                <p class="text-left text-md-left" style="margin-top:10px; margin-bottom:10px;">'.$srow["Comment"].'</p>
+                                <p class="text-left text-md-left" style="margin-top:10px; margin-bottom:10px;">'.$row["Comment"].'</p>
                                 </div>
                             </div>
                         </div>
@@ -177,6 +172,7 @@ $postId = $_REQUEST["postId"];
                     }
                 ?>
                     </div>
+                    <div id="end"></div>
             </div>
         </section>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

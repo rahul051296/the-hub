@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://fonts.googleapis.com/css?family=Righteous');
 * {
     margin: 0;
     padding: 0;
@@ -6,6 +7,15 @@
 }
 
 .back1 {
+    background: #f1f1f1;
+    background-attachment: fixed;
+    background-position: center;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.back2 {
     background: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .6)), url(../img/background.jpg);
     background-attachment: fixed;
     background-position: center;
@@ -24,6 +34,10 @@
 
 .jumbotron h1 {
     font-size: 3em;
+}
+
+.pads-top-10 {
+    margin-top: 10px;
 }
 
 #start {
@@ -48,9 +62,17 @@
 #login {
     border: 3px solid #fff;
     padding: 30px;
-    margin-top: 10%;
-    color: #fff;
-    margin-bottom: 5%;
+    box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
+    background: #fff;
+    margin-top: 40px;
+    ;
+    border-radius: 10px;
+}
+
+#register:hover,
+#login:hover {
+    box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2);
+
 }
 
 .mars-btm-10 {
@@ -74,10 +96,20 @@
     border-radius: 0;
 }
 
-.search {
-    border-radius: 0;
+.search-1 {
+    border-radius: 10px 0 0 10px;
     outline: 0;
     border: 0;
+}
+
+.search-2 {
+    border-radius: 0px 10px 10px 0px;
+    outline: 0;
+    border: 0;
+}
+
+#curve {
+    border-radius: 10px;
 }
 
 .title {
@@ -114,11 +146,21 @@ a:hover {
     text-decoration: none !important;
 }
 
+.linked > a:hover {
+    text-decoration: underline!important;
+}
+
 #home,
-#comments {
+#comments, #edit {
     padding-top: 100px;
     background: #f1f1f1;
 
+}
+
+#empty-msg {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 div.txt-area {
@@ -158,23 +200,37 @@ a {
 }
 
 #cover {
-    width: 100vw;
+    width: 100%;
     height: 300px;
     background-repeat: no-repeat !important;
     background-position: center !important;
     background-size: cover !important;
     background-attachment: fixed !important;
-    /*    background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url(../img/cover_pic/01.jpg);*/
     background: linear-gradient(to bottom, #f7d232, #f7d232);
 }
 
 #profile-pic {
-    box-shadow: 1px 1px 10px 1px #000;
+    box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 1);
     background: #fff;
     object-fit: cover;
+    border-radius: 10px;
     width: 200px;
     height: 200px;
     background-size: cover;
+}
+
+.boxes {
+    background: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
+    border-radius: 10px;
+    padding: 0px 0px 0px 0px;
+    margin-right: 10px;
+    box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
+}
+
+.boxes > a:hover {
+    color: #000;
 }
 
 .home-pic {
@@ -200,17 +256,30 @@ a {
     color: white;
     text-align: center;
 }
-
+.btn-outline-primary.focus, .btn-outline-primary:focus,.btn-primary.focus, .btn-primary:focus{
+    box-shadow: 0px 0px 0px 0px #000 !important;
+}
+.btn-outline-primary:not([disabled]):not(.disabled).active, .btn-outline-primary:not([disabled]):not(.disabled):active, .show>.btn-outline-primary.dropdown-toggle{
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0);
+}
 #exp {
     background: white;
     border-radius: 10px;
-    padding-bottom: 5px; //box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);
+    padding-bottom: 5px; 
     box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
 
 }
 
-#exp:hover {
+#exp:hover,
+.boxes:hover {
     box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2);
+}
+
+.shadow:hover {
+    box-shadow: 1px 2px 4px 0 rgba(46, 61, 73, .2);
 }
 
 #posts {
@@ -236,13 +305,18 @@ div#exp a:hover {
 #settings-title {
     border: 4px solid #243447;
     padding: 10px;
+    text-transform: uppercase;
     background: #243447;
     color: #fff;
 }
 
+.shadow {
+    box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2);
+
+}
+
 body#sets {
     overflow-x: hidden;
-    border: 4px solid #243447;
 }
 
 #settings-content {
@@ -251,15 +325,24 @@ body#sets {
     background: #fff;
     border-radius: 10px;
 }
-a#click p:hover{
+
+a#click p:hover {
     color: #000 !important;
 }
+
 input.text-box1,
 textarea {
-    border: 3px solid rgba(106, 106, 106, 0.3) !important;
+    border: 3px solid #f1f1f1 !important;
     padding-top: 5px;
     padding-bottom: 5px;
     overflow: hidden;
+    border-radius: 10px;
+}
+
+input.text-box1:focus,
+textarea:focus {
+    outline: 0;
+
 }
 
 #home-textarea {
@@ -286,7 +369,7 @@ input#fileToUpload {
     object-fit: cover;
     width: 100px;
     height: 100px;
-    box-shadow: 0px 0px 10px 0px #000;
+    border-radius: 10px 0px 0px 10px;
 }
 
 #post-box {
@@ -314,8 +397,25 @@ input#fileToUpload {
 #post-box p {
     font-size: 1em;
 }
-#post-box p:hover  {
+
+#post-box p:hover {
     color: #000;
+}
+
+.navbar-brand {
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 10px;
+    padding-bottom: 0;
+    padding-top: 0;
+    font-size: 1.5em;
+    font-family: 'Righteous', cursive !important;
+
+}
+
+.navbar-dark .navbar-toggler {
+    color: #fff !important;
+    border-color: rgba(255, 255, 255, 0) !important;
 }
 
 #post-box > div#pro-info {
@@ -327,7 +427,6 @@ input#fileToUpload {
     height: 100px;
     text-align: left;
     object-fit: cover;
-    box-shadow: 0px 0px 10px 0px #000;
 
 }
 
@@ -344,7 +443,26 @@ input#fileToUpload {
 }
 
 #mb-view {
+    margin-bottom: 3px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+}
+
+#mb-view-2 {
     margin-bottom: 10px;
+    background: #fff;
+    padding: 5px;
+    border-radius: 0 0 10px 10px;
+}
+
+#mb-view-2 p {
+    margin: 0 auto;
+    font-size: .9em;
+}
+
+#mb-view:a {
+    text-decoration: underline !important;
 }
 
 .comm-box,
@@ -368,7 +486,7 @@ input#fileToUpload {
 .comm-box:hover,
 .comm-box-1:hover {
     background: #fafafa;
-        color: red !important;
+    color: red !important;
 
     border-radius: 0 0 10px 10px;
 }
@@ -403,11 +521,14 @@ input#fileToUpload {
     box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
     margin-top: 20px;
     margin-bottom: 40px;
+    padding-left: 0;
+    padding-right: 0;
     border-radius: 10px !important;
 }
 
 .comments-box:hover,
-.text-box:hover, #settings:hover {
+.text-box:hover,
+#settings:hover {
     box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2);
 
 }
@@ -422,6 +543,15 @@ input#fileToUpload {
     object-fit: cover;
 }
 
+#drop-circles {
+    position: relative;
+    left: 4%;
+}
+
+img[alt*="www.000webhost.com"] {
+    display: none;
+}
+
 @media only screen and (max-width:767px) {
     #profile-head {
         position: relative;
@@ -433,18 +563,28 @@ input#fileToUpload {
         padding-left: 30px !important;
     }
     #home,
-    #comments {
+    #comments,#edit {
         padding-top: 80px;
     }
 }
 
 @media only screen and (max-width:360px) {
-    .small-pic {
-        width: 90px;
-        height: 90px;
-        object-fit: cover;
+
+    #drop-circles {
+        position: relative;
+        left: 1%;
     }
     #pro-name {
         padding-left: 25px;
+    }
+    .small-pic {
+        width: 80px;
+        height: 80px;
+        text-align: left;
+        object-fit: cover;
+
+    }
+    #mb-view h5 {
+        font-size: 1.2em;
     }
 }

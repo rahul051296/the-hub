@@ -44,9 +44,11 @@ if(isset($_POST['login'])){
 </head>
 
 <body class="back1">
-         <nav class="navbar navbar-expand-md bg-custom navbar-dark">
+         <nav class="navbar navbar-expand-md bg-custom-2 navbar-dark">
             <!-- Brand -->
-            <a class="navbar-brand" href="index.php">The Hub</a>
+                           <div class="container">
+
+                <a class="navbar-brand" href="home.php">The Hub</a>
 
             <!-- Toggler/collapsibe Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -58,26 +60,31 @@ if(isset($_POST['login'])){
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link text-center" href="signup.php">Register</a>
+                        <a class="nav-link text-center" href="signup.php">Sign Up</a>
                     </li>
                 </ul>
             </div>
+             </div>
         </nav>
+        <div class="col-12 text-center" id="settings-title">
+                    <h1 class="title">Login</h1>
+                </div>
     <section class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <form id="login" method="post" name="login" action="login.php">
-                    <h1 class="text-center title">LOGIN</h1>
+                <form  method="post" name="login" action="login.php">
+                   <div id="login">
                     <div class="row mars-btm-10">
-                        <label class="col-4" for="email">E-Mail</label><input class="col-8" type="text" placeholder="Enter Email Id" name="email" required>
+                        <input class="col-12 text-box1" type="text" placeholder="Enter Email Id" name="email" required>
                     </div>
                     <div class="row mars-btm-10">
-                        <label class="col-4" for="pass">Password</label><input class="col-8" type="password" placeholder="Enter Password" name="password" required>
+                        <input class="col-12 text-box1" type="password" placeholder="Enter Password" name="password" required>
+                    </div>
                     </div>
                     <div>
-                        <input type="submit" name="login" class="btn btn-block btn-success mars-top-30" value="Sign In">
+                        <input type="submit" name="login" class="btn btn-block btn-primary mars-top-10 shadow" value="Sign In">
                     </div>
-                    <p class="text-center">
+                    <p class="text-center text-danger">
                         <?php 
                     if(isset($loginErr)){
                     echo $loginErr; 

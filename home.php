@@ -40,6 +40,7 @@
         <meta name="theme-color" content="#243447">
         <title>Home</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/animate.css">
         <link rel="stylesheet" href="css/styles.css">
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -52,29 +53,13 @@
                 <a class="navbar-brand" href="home.php">The Hub</a>
 
                 <!-- Toggler/collapsibe Button -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style="outline:none">
+                <span class="navbar-toggler-icon"></span>
+              </button>
 
                 <!-- Navbar links -->
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                    <ul class="navbar-nav ml-auto">
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="home.php">Home</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <?php
-            echo $name;
-            ?>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="profile.php?user=<?php echo $username; ?>">Profile</a>
-                                <a class="dropdown-item" href="settings.php">Settings</a>
-                                <a class="dropdown-item" href="signout.php">Sign Out</a>
-                            </div>
-                        </li>
+                    <ul class="navbar-nav">
                         <li class="nav-item">
 
                             <form action="search.php?" method="get" name="searchForm">
@@ -88,6 +73,28 @@
                                 </div>
                             </form>
                         </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="home.php">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="interests.php">Interests</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?php
+            echo $name;
+            ?>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="profile.php?user=<?php echo $username; ?>">Profile</a>
+                                <a class="dropdown-item" href="settings.php">Settings</a>
+                                <a class="dropdown-item" href="signout.php">Sign Out</a>
+                            </div>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -125,8 +132,8 @@
                         </div>
                     </div>
                     <div class="col-md-4 d-none d-md-block mars-btm-20 text-center">
-                        <div id="exp"> 
-                        <a href=<?php echo "profile.php?user=$username" ?>>
+                        <div id="exp" class="wow animated fadeIn">
+                            <a href=<?php echo "profile.php?user=$username" ?>>
                     <img src=<?php if($profilepic!='' ) { echo "'$profilepic'"; } else{ echo "'img/profile_pic/default.png'"; } ?> class="img-responsive home-pic">
                     <h3 class="mars-top-10" style="margin-bottom:0px;"><?php echo $name; ?></h3>
                     <h6>@<?php echo $username; ?></h6>
@@ -136,7 +143,7 @@
                         echo '<p><a href="'.$web.'" target="_blank">'.$web.'</a></p>'; } ?>
                             </a>
                         </div>
-                        <div class="row" style="margin-top:30px; ">
+                        <div class="row wow animated fadeIn" style="margin-top:30px; ">
                             <div class="col-7">
                                 <h5 class="text-left">Other Users</h5>
                             </div>
@@ -144,7 +151,7 @@
                                 <a href="users.php" style="color:blue">See All</a>
                             </div>
                         </div>
-                        <div id="other-user" class="container">
+                        <div id="other-user" class="container wow animated slideInUp">
 
                             <?php
                             while($row=$allusers->fetch_assoc()){
@@ -170,14 +177,14 @@
                        ?>
                         </div>
                     </div>
-                    <div class="col-md-8 col-sm-12 mars-btm-20 text-md-left text-center text-lg-center">
+                    <div class="col-md-8 col-sm-12 mars-btm-20 text-md-left text-center text-lg-center wow animated fadeIn">
                         <form action="home.php" method="post" name="postForm">
-                            <textarea id="home-textarea" class="form-control" type="text" placeholder="Share your thoughts" name="posted" style="resize:none; height:120px; box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);" required></textarea>
+                            <textarea id="home-textarea"  class="form-control" type="text" placeholder="Share your thoughts" name="posted" style="resize:none; height:120px; box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);" required></textarea>
                             <button type="submit" name="update" class="btn btn-block btn-primary mars-top-10" style="box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);">POST</button>
                         </form>
-                        <div id="posts" class="mars-top-30">
-
-                        </div>
+                    <div class="mars-top-10 container" id="filter">      
+                    </div>
+                        <div id="posts" class="mars-top-10"></div>
                     </div>
                 </div>
             </article>
@@ -187,6 +194,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+        <script src="js/wow.js"></script>
+        <script>
+        new WOW().init();
+        </script>
         <script src="js/posts.js"></script>
     </body>
 

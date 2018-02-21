@@ -59,10 +59,28 @@ $postId = $_REQUEST["postId"];
 
                 <!-- Navbar links -->
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                      <ul class="navbar-nav">
+                       <li class="nav-item">
+
+                            <form action="search.php?" method="get" name="searchForm">
+                                <div class="input-group">
+                                    <input type="text" name="query" id="" class="form-control search-1" placeholder="Search">
+                                    <span class="input-group-btn">
+                                <button type="submit" class="btn btn-custom search-2" id="" name="search">
+								<i class="fas fa-search"></i>
+                        </button>
+                        </span>
+                                </div>
+                            </form>
+                        </li>
+                   </ul>
                     <ul class="navbar-nav ml-auto">
 
                         <li class="nav-item">
                             <a class="nav-link" href="home.php">Home</a>
+                        </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="interests.php">Interests</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,18 +93,6 @@ $postId = $_REQUEST["postId"];
                                 <a class="dropdown-item" href="settings.php">Settings</a>
                                 <a class="dropdown-item" href="signout.php">Sign Out</a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <form action="search.php" method="get" name="searchForm">
-                                <div class="input-group">
-                                    <input type="text" name="query" id="" class="form-control search-1" placeholder="Search">
-                                    <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-custom search-2" id="" name="search">
-								<i class="fas fa-search"></i>
-                        </button>
-                                    </span>
-                                </div>
-                            </form>
                         </li>
                     </ul>
                 </div>
@@ -126,7 +132,7 @@ $postId = $_REQUEST["postId"];
                             <form class="form-control cb" action="comments.php?postId='.$postId.'#end" method="post">
                                 <div class="">
                                 <textarea placeholder="Share your comments" name="commentbox" style="width:100%; resize:none; height:60px; padding:10px;" required></textarea>
-                                <button type="submit" name="comment" class="btn btn-primary btn-block">Comment</button
+                                <button type="submit" name="comment" class="btn btn-primary btn-block mars-top-10">Comment</button
                                 </div>
                             </form>
                         </div>
@@ -137,8 +143,9 @@ $postId = $_REQUEST["postId"];
                     ?>
                     <div class="main-comments">
                         <?php
+                        $a = 0;
                     while($row=$allcomments->fetch_assoc()){ 
-                        
+                        $a++;
                         $unix = $row["Time"];
                         $date = new DateTime("@$unix");
                         $date->setTimezone(new DateTimeZone('Asia/Kolkata'));
@@ -164,10 +171,16 @@ $postId = $_REQUEST["postId"];
                         </div>
                         <div class="row">
                                 <div class="col-11 offset-lg-1 col-md-10 offset-md-2">
-                                <p class="text-left text-md-left" style="margin-top:10px; margin-bottom:10px;">'.$row["Comment"].'</p>
+                                <p class="text-left text-md-left" style="margin-top:10px; margin-bottom:10px;" id="commentdata'.$a.'"></p>
                                 </div>
                             </div>
                         </div>
+                        <script>
+                                pd = `'.$row["Comment"].'`
+                                var repl = pd.replace(/#(\w+)/g, `<a id="hashtag" href="#">#$1</a>`);
+                                var res = repl.replace(/@(\w+)/g, `<a id="hashtag" href="profile.php?user=$1">@$1</a>`);
+                                document.getElementById("commentdata'.$a.'").innerHTML = res;
+                            </script>
                         ';
                     }
                 ?>

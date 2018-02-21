@@ -10,12 +10,12 @@ if( !isset($_SESSION['username']) ) {
     if(!$dbcon){
          die('Error Connecting to database');
     }
-
- if(isset($_GET['search'])){
-                $term = $_GET['query'];
-                $sql = "SELECT DISTINCT users.*, (SELECT COUNT(followers.Follower) FROM followers WHERE users.Username = followers.Follower AND followers.Username = '$username') as FollowTest FROM users,followers WHERE followers.Username='$username' AND users.Name LIKE '%$term%' OR users.Username LIKE '%$term%' AND users.Username != '$username'"; 
-                $result=$dbcon->query($sql);
- }
+    if(isset($_POST['add'])){
+           $tag = mysqli_real_escape_string($dbcon, $_POST['interests']);
+            $insert="INSERT INTO tags (Username,Tag) values('$username','$tag')";
+            $result=$dbcon->query($insert); 
+            
+    }
       
 ?>
     <!DOCTYPE html>
@@ -85,49 +85,17 @@ if( !isset($_SESSION['username']) ) {
             </div>
         </nav>
         <article >
-            <div class="col-12 text-center" id="settings-title">
-                    <h1 class="title">Search</h1>
+            <div class="col-12 text-center" id="interests-title">
+                    <h1 class="title">Interests</h1>
                 </div>
-            <section class="container"id="search-results">
-                     <div class="row">
-                         <?php
-                            while($row=$result->fetch_assoc()){
-                                if($row["FollowTest"] == 1){
-                                    $btn = '<h5><span class="badge badge-primary" style="font-weight: 100 !important;">Following <i style="font-size:1em;" class="fas fa-1x fa-check-circle"></i>
-                                    </span></h5>';
-                                }
-                                else{
-                                    $btn = '<h5 style="font-weight:normal;"><span class="badge badge-secondary" style="font-weight: 100 !important;">Follow <i style="font-size:1em;" class="fas fa-1x fa-plus-circle"></i>
-                                    </span></h5> ';
-                                }
-                                $profilename = $row["Username"];
-                                $profilepics = mysqli_query($dbcon,"SELECT * FROM `pictures` WHERE Username = '$profilename'");
-                                $picrow = mysqli_fetch_array($profilepics); 
-                                $url = $picrow['Profile'];
-                                if($url!=''){
-                                    $url = $picrow['Profile']; 
-                                }
-                                else{
-                                    $url = "img/profile_pic/default.png";
-                                }
-                    echo ' <div class="col-lg-4 col-md-6 col-12  ">
-                    <div class="boxes">
-                       <a href="profile.php?user='.$row["Username"].'"><div class="row mars-btm-20">
-                       <div class="col-lg-4 col-md-4 col-4" >
-                        <img src="'.$url.'" id="search-pic" class="img-responsive" alt="">
-                           </div>
-                        <div class="col-lg-8 col-md-8 col-8 pads-top-10">
-                        <h5 class="" style="margin-bottom:0">'.$row["Name"].'</h5>
-                        <p style="font-size:0.8em; margin-bottom:10px">@'.$row["Username"].'</p>
-                        '.$btn.'
-                           </div>
-                        </div></a>
-                        </div>
-                        </div>';
-                            }
-                              ?>
-                        </div>
-            </section>
+                <section class="container">
+                <div class="col-md-8 offset-md-2 col-12">
+                     <form action="interests.php" method="post" name="postForm">
+                            <textarea id="home-textarea" class="form-control" type="text" placeholder="Add your interests" name="interests" style="margin-top:30px; resize:none; height:50px; box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);" required></textarea>
+                            <button type="submit" name="add" class="btn btn-primary mars-top-10" style="box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);">ADD</button>
+                        </form>
+                </div>                    
+                </section>
         </article>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

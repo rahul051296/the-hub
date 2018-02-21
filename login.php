@@ -16,8 +16,7 @@ if(isset($_POST['login'])){
     
         $result = mysqli_query($dbcon,"SELECT * FROM `users` WHERE Email = '$email'");
         $row=mysqli_fetch_array($result);
-        $count = mysqli_num_rows($result);
-        if($count == 1 && $row['Password']==$password){
+        if($row['Email']==$email && $row['Password']==$password){
             $_SESSION['username'] = $row['Username'];
             $_SESSION['name'] = $row['Name'];
             header("Location: home.php");

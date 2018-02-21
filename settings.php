@@ -36,6 +36,7 @@ if( !isset($_SESSION['username']) ) {
         if($name!=''){
             $sql = "UPDATE users SET name = '$name' WHERE Username='$username'";
             mysqli_query($dbcon,$sql);
+            $_SESSION['name'] = $name;
             $response = "Changes have been Saved.";
         }
         if($email!=''){
@@ -84,10 +85,28 @@ if( !isset($_SESSION['username']) ) {
 
                 <!-- Navbar links -->
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                      <ul class="navbar-nav">
+                       <li class="nav-item">
+
+                            <form action="search.php?" method="get" name="searchForm">
+                                <div class="input-group">
+                                    <input type="text" name="query" id="" class="form-control search-1" placeholder="Search">
+                                    <span class="input-group-btn">
+                                <button type="submit" class="btn btn-custom search-2" id="" name="search">
+								<i class="fas fa-search"></i>
+                        </button>
+                        </span>
+                                </div>
+                            </form>
+                        </li>
+                   </ul>
                     <ul class="navbar-nav ml-auto">
 
                         <li class="nav-item">
                             <a class="nav-link" href="home.php">Home</a>
+                        </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="interests.php">Interests</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -100,19 +119,6 @@ if( !isset($_SESSION['username']) ) {
                                 <a class="dropdown-item" href="#">Settings</a>
                                 <a class="dropdown-item" href="signout.php">Sign Out</a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-
-                            <form action="search.php" method="get" name="searchForm">
-                                <div class="input-group">
-                                    <input type="text" name="query"  class="search-1 form-control" placeholder="Search">
-                                    <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-custom search-2" id="" name="search">
-								<i class="fas fa-search"></i>
-                        </button>
-                                    </span>
-                                </div>
-                            </form>
                         </li>
                     </ul>
                 </div>

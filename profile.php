@@ -12,7 +12,7 @@
         if(!$dbcon){
              die('Error Connecting to database');
         }
-
+        $rowi = "";
         $profiledata = mysqli_query($dbcon,"SELECT users.Name,users.Username,users.Email,users.Bio,users.Website,pictures.Profile,pictures.Cover FROM `users`, `pictures` WHERE users.Username = '$profilename' AND pictures.Username = '$profilename'");
 
         $data = mysqli_fetch_array($profiledata);
@@ -30,6 +30,11 @@
 
         $posts = "SELECT (SELECT likes.Liked FROM likes WHERE likes.postId=posts.id AND likes.Username='$username') as Liked,(SELECT COUNT(comments.Comment) FROM comments WHERE comments.PostId = posts.Id) as CommentCount,(SELECT COUNT(likes.Liked) FROM likes WHERE likes.Liked = 1 AND posts.Id = likes.postId) as LikeCount, posts.* FROM `posts` WHERE posts.Username = '$profilename' ORDER BY Id DESC";
         $allposts=$dbcon->query($posts);
+        $pcount = mysqli_num_rows($allposts);
+
+        $friends = "SELECT followers.Follower, pictures.Profile, users.Name, users.Username FROM `followers`,pictures,users WHERE followers.Username = '$profilename' AND followers.Username <> followers.Follower AND pictures.Username = followers.Follower AND followers.Follower = users.Username LIMIT 5";
+        $friendlist = $dbcon->query($friends);
+        $counter = mysqli_num_rows($friendlist);
 
 ?>
     <!DOCTYPE html>
@@ -43,6 +48,7 @@
             <?php echo $pname;  ?>
         </title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/animate.css">
         <link rel="stylesheet" href="css/styles.css">
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -61,10 +67,28 @@
 
                 <!-- Navbar links -->
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+
+                            <form action="search.php?" method="get" name="searchForm">
+                                <div class="input-group">
+                                    <input type="text" name="query" id="" class="form-control search-1" placeholder="Search">
+                                    <span class="input-group-btn">
+                                <button type="submit" class="btn btn-custom search-2" id="" name="search">
+								<i class="fas fa-search"></i>
+                        </button>
+                        </span>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
                     <ul class="navbar-nav ml-auto">
 
                         <li class="nav-item">
                             <a class="nav-link" href="home.php">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="interests.php">Interests</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -78,25 +102,13 @@
                                 <a class="dropdown-item" href="signout.php">Sign Out</a>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <form action="search.php" method="get" name="searchForm">
-                                <div class="input-group">
-                                    <input type="text" name="query" id="" class="form-control search-1" placeholder="Search">
-                                    <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-custom search-2" id="" name="search">
-								<i class="fas fa-search"></i>
-                        </button>
-                                    </span>
-                                </div>
-                            </form>
-                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
         <article id="cover">
-            <div class="container">
-                <div id="profile-head">
+            <div class="container wow animated fadeIn">
+                <div id="profile-head" class="">
                     <img src=<?php if($pprofilepic!='' ) { echo "'$pprofilepic'"; } else{ echo "'img/profile_pic/default.png'"; } ?> width="200px" class="img-responsive img-rounded" id="profile-pic" />
                 </div>
                 <div id="profile-details">
@@ -160,7 +172,7 @@
                                     setTimeout(() => {
                                         location.reload(true);
 
-                                    },1000);
+                                    }, 1000);
 
                                 });
                             }
@@ -177,7 +189,7 @@
                                     unfollow.innerHTML = '<span style="font-size:1.1em;">Follow </span> <i style="font-size:0.8em;" class="fas fa-1x fa-plus-circle"></i>';
                                     setTimeout(() => {
                                         location.reload(true);
-                                    },1000);
+                                    }, 1000);
 
                                 });
                             }
@@ -187,8 +199,53 @@
 
                 </div>
 
-                <div class="container">
-                    <div class="row" style="margin-top:50px; margin-bottom:50px;">
+                <div class="row" style="margin-top:50px; margin-bottom:50px;">
+                    <div class="col-md-4 d-none d-md-block">
+                        <div class="row">
+                            <div class="col-7">
+                                <h5 class="text-left">Follows</h5>
+                            </div>
+                            <div class="col-5 linked text-right">
+                                <a href="#" style="color:blue">See All</a>
+                            </div>
+                        </div>
+
+                        <div id="other-user" class="container wow animated fadeIn">
+                            <div id="friends-err" class="text-center">
+                                <h5 class="text-muted">No Users Found.</h5>
+                            </div>
+                            <?php
+                            while($row1=$friendlist->fetch_assoc()){
+                                
+                                $url1 = $row1['Profile'];
+                                if($url1!=''){
+                                    $url1 = $row1['Profile']; 
+                                }
+                                else{
+                                    $url1 = "img/profile_pic/default.png";
+                                }
+                                echo 
+                                    '<a href="profile.php?user='.$row1["Username"].'"><div class="row text-left mars-btm-20" id="other-lines">
+                                        <div class="col-3">
+                                            <img src="'.$url1.'" class="rounded"  alt="">
+                                        </div>
+                                        <div class="col-9">
+                                            <h6 style="margin-bottom:0px; font-size:1.1em;">'.$row1["Name"].'</h6>
+                                            <p style="font-size:0.8em;">@'.$row1["Username"].'</p>
+                                        </div>
+                                    </div></a>';
+                            }
+                       ?>
+                        </div>
+                    </div>
+                    <script>
+                        let c = "<?php echo $counter; ?>";
+                        if (c != 0) {
+                            document.getElementById('friends-err').style.display = "none";
+                        }
+                    
+                    </script>
+                    <div class="col-12 col-md-8 wow animated fadeIn" style="margin-top:25px;">
                         <?php
                         $a =0;
                     while($row=$allposts->fetch_assoc()){ 
@@ -210,8 +267,10 @@
                         else{
                             $option = '';
                         }
+                        
                     echo'
-                    <div id="post-box" class="col-12 col-md-8 offset-md-2">
+                    
+                        <div id="post-box" >
                             <div class="row" id="pro-info">
                             <div class="col-2 col-md-2 col-lg-1 ">
                                <a id="links" href="profile.php?user='.$row["Username"].'" > <img src="'.$picurl.'" class=" rounded-circle " width="50px" id="post-circle" /></a>
@@ -224,37 +283,71 @@
                                 '.$option.'
                             </div>
                             </div>
+                            
                             <div class="row">
                                 <div class="col-11 offset-lg-1 col-md-10 offset-md-2">
-                                <p class="text-left text-md-left" >'.$row["Post"].'</p>
+                                <p class="text-left text-md-left" id="postdata'.$a.'"></p>
                                 </div>
                             </div>
+                            <script>
+                                pd = `'.$row["Post"].'`
+                                var repl = pd.replace(/#(\w+)/g, `<a id="hashtag" href="#">#$1</a>`);
+                                var res = repl.replace(/@(\w+)/g, `<a id="hashtag" href="profile.php?user=$1">@$1</a>`);
+                                document.getElementById("postdata'.$a.'").innerHTML = res;
+                            </script>
                            
                             <div class="row text-center ">
-                                <div class="col-6 comm-box" id="liked'.$a.'"><div onclick="like('.$a.','.$row["Id"].','.$row["Liked"].');"><i class="fas fa-heart" ></i> Like (<span id="count'.$a.'">'.$row["LikeCount"].'</span>)</div></div>
-                                <div class="col-6 comm-box"><a href="comments.php?postId='.$row["Id"].'"><div><i class="fas fa-comment"></i> Comment ('.$row["CommentCount"].')</div></a></div>
+                                <div class="col-6 comm-box" >
+                                <input type="checkbox"  onclick="like('.$a.','.$row["Id"].','.$row["Liked"].');" id="like'.$a.'">
+                                <label for="like'.$a.'" class="label-color">
+                                <i class="fas fa-heart" ></i> Like (<span id="count'.$a.'">'.$row["LikeCount"].'</span>)
+                                </label>
+                                </div>
+                                <div class="col-6 comm-box"><a href="comments.php?postId='.$row["Id"].'">
+                                <div><i class="fas fa-comment"></i> Comment ('.$row["CommentCount"].')
+                                </div></a>
+                                </div>
                             </div>
-                            </div>
+                        </div>
                             <script>
-                                function like(i,id,liked){
+                                function like(i,id,likes){
                                     let user = "'.$row["Username"].'";
-                                    if(liked!=1){
-                                    let red = document.getElementById("liked"+i).style.color = "red";
-                                    let t = document.getElementById("count"+i).innerText;
-                                    let l = parseInt(t)+1;
-                                    document.getElementById("count"+i).innerText = l ;
-                                    fetch(`like.php?postId=${id}&username=${user}&liked=1`,{method:"GET"});
+                                    var liked = document.getElementById(`like${i}`).checked;
+                                    if(liked==true){
+                                        let t = document.getElementById("count"+i).innerText;
+                                        let l = parseInt(t)+1;
+                                        document.getElementById("count"+i).innerText = l ;
+                                        fetch(`like.php?postId=${id}&username=${user}&liked=1`,{method:"GET"});
+                                    }
+                                    else{
+                                        let t = document.getElementById("count"+i).innerText;
+                                        let l = parseInt(t)-1;
+                                        document.getElementById("count"+i).innerText = l ;
+                                        fetch(`like.php?postId=${id}&username=${user}&liked=2`,{method:"GET"});
                                     }
                                 }
+                                
+                                
+                            
                             </script>
                             
                              <script>
-                             if('.$row["Liked"].'==1)
-                                    document.getElementById("liked'.$a.'").style.color="red";
+                             if('.$row["Liked"].' == 1)
+                        document.getElementById("like'.$a.'").setAttribute("checked","checked");
                             </script>
                             ';
                     }
                     ?>
+                            <div id="error-err" class="text-center" style="margin-top:48px">
+                                <h5 class="text-muted">No Posts Found.</h5>
+                            </div>
+                            <script>
+                                let pc = "<?php echo $pcount; ?>";
+                                if (pc != 0) {
+                                    document.getElementById('error-err').style.display = "none";
+                                }
+
+                            </script>
                     </div>
                 </div>
             </div>
@@ -272,6 +365,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+        <script src="js/wow.js"></script>
+        <script>
+        new WOW().init();
+        </script>
     </body>
 
     </html>

@@ -30,7 +30,6 @@ if(isset($_POST['update'])){
         <title>
             <?php echo "$name's Post"; ?>
         </title>
-        </title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/styles.css">
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -92,8 +91,7 @@ if(isset($_POST['update'])){
                     </div>
         </section>
         <script>
-            document.getElementById('home-textarea').value = <?php echo "'$posted'"; ?>
-
+            document.getElementById('home-textarea').value = `<?php echo $posted; ?>`
         </script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

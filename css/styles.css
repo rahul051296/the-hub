@@ -340,7 +340,21 @@ a {
     height: 200px;
     background-size: cover;
 }
-
+.tag-box{
+    background: #243447;
+    color: #fff;
+    padding: 3px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+.close-tag{
+    margin-left: 20px;
+    margin-right: 5px;
+    font-size: 0.8em;
+}
+.close-tag>a {
+	color: #fff;
+}
 .boxes {
     background: #fff;
     margin-bottom: 20px;

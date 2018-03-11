@@ -79,8 +79,13 @@ $postId = $_REQUEST["postId"];
                         <li class="nav-item">
                             <a class="nav-link" href="home.php">Home</a>
                         </li>
-                           <li class="nav-item">
-                            <a class="nav-link" href="interests.php">Interests</a>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Interests</a>
+                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="interests.php">Add Interests</a>
+                                <a class="dropdown-item" href="findusers.php">Find Users</a>
+                                <a class="dropdown-item" href="discover.php">Discover</a>
+                            </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -123,7 +128,7 @@ $postId = $_REQUEST["postId"];
                         </div>
                         <div class="row">
                             <div class="col-11 offset-lg-1 col-md-10 offset-md-2">
-                                <p class="text-left text-md-left" >'.$postedData.'</p>
+                                <p class="text-left text-md-left" id="posteddata"></p>
                             </div>
                         </div>
                         </div>
@@ -137,7 +142,15 @@ $postId = $_REQUEST["postId"];
                             </form>
                         </div>
                         </div>
-                    </div>';
+                    </div>
+                        <script>
+                                pd = `'.$postedData.'`
+                                var repl = pd.replace(/#(\w+)/g, `<a id="hashtag" href="#">#$1</a>`);
+                                var res = repl.replace(/@(\w+)/g, `<a id="hashtag" href="profile.php?user=$1">@$1</a>`);
+                                document.getElementById("posteddata").innerHTML = res;
+                            </script>
+                    
+                    ';
                 
                     
                     ?>

@@ -13,9 +13,12 @@ if( !isset($_SESSION['username']) ) {
     if(isset($_POST['add'])){
            $tag = mysqli_real_escape_string($dbcon, $_POST['interests']);
             $insert="INSERT INTO tags (Username,Tag) values('$username','$tag')";
-            $result=$dbcon->query($insert); 
-            
+            $result=$dbcon->query($insert);    
+            header('Location:interests.php');
     }
+
+    $interests = $dbcon->query("SELECT Id, LOWER(Tag) as Tag FROM `tags` WHERE Username='$username'");
+
       
 ?>
     <!DOCTYPE html>
@@ -65,8 +68,13 @@ if( !isset($_SESSION['username']) ) {
                         <li class="nav-item">
                             <a class="nav-link" href="home.php">Home</a>
                         </li>
-                           <li class="nav-item">
-                            <a class="nav-link" href="interests.php">Interests</a>
+                           <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Interests</a>
+                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="interests.php">Add Interests</a>
+                                <a class="dropdown-item" href="findusers.php">Find Users</a>
+                                <a class="dropdown-item" href="discover.php">Discover</a>
+                            </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -92,9 +100,28 @@ if( !isset($_SESSION['username']) ) {
                 <div class="col-md-8 offset-md-2 col-12">
                      <form action="interests.php" method="post" name="postForm">
                             <textarea id="home-textarea" class="form-control" type="text" placeholder="Add your interests" name="interests" style="margin-top:30px; resize:none; height:50px; box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);" required></textarea>
-                            <button type="submit" name="add" class="btn btn-primary mars-top-10" style="box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);">ADD</button>
+                            <button type="submit" name="add" class="btn btn-block btn-primary mars-top-10" style="box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);">ADD</button>
                         </form>
                 </div>                    
+                </section>
+                <section class="container mars-top-30">
+                   <div class="col-md-8 offset-md-2 col-12">
+                   <div class="row">
+                    <?php 
+                         while($row=$interests->fetch_assoc()){
+                             $tagId = $row['Id'];
+                             echo '
+                            <div class="col-6 col-md-3 mars-top-10">
+                             <span class="tag-box">
+                             <span>'.$row['Tag'].'</span>
+                             <span class="close-tag"><a href="removeinterest.php?tag='.$tagId.'&user='.$username.'"><i class="fas fa-times"></i></a></span>
+                             </span>
+                             </div>
+                             ';
+                         }
+                    ?>   
+                    </div>
+                    </div>                 
                 </section>
         </article>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

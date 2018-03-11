@@ -63,8 +63,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="home.php">Home</a>
                         </li>
-                           <li class="nav-item">
-                            <a class="nav-link" href="interests.php">Interests</a>
+                           <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Interests</a>
+                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="interests.php">Add Interests</a>
+                                <a class="dropdown-item" href="findusers.php">Find Users</a>
+                                <a class="dropdown-item" href="discover.php">Discover</a>
+                            </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

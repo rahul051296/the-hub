@@ -4,3 +4,10 @@
 
 img/profile_pic/
 img/cover_pic/
+hub-bot/.idea
+hub-bot/__pycache__
+hub-bot/web
+hub-bot/requirements.txt
+hub-bot/rasa_core.log
+hub-bot/out.log
+hub-bot/stories.md

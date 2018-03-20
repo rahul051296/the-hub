@@ -1,0 +1,69 @@
+slots:
+  query:
+    type: text
+  user:
+    type: text
+  
+intents:
+ - greet
+ - goodbye
+ - fetch
+ - formality
+ - personal
+ - what_doing
+ - alright
+ - what_can_do
+ - hub_detail
+ 
+entities:
+ - query
+ - user
+  
+templates:
+  utter_greet:
+    - "Hey! How can i help?"
+    - "Hey, What's up?"
+    - "Hola!"
+    - "Hey!"
+    
+  utter_goodbye:
+    - "Bye Bye"
+    - "Goodbye! :D"
+    - "See you soon! :)"
+
+  utter_what_doing:
+    - "Nothing much, mostly just work.."
+    - "Just the usual routine.."
+    - "Doing my job as usual.."
+    
+  utter_personal:
+    - "I'm the HubBot! I can guide you around the hub if you need any help. :)"
+    - "My name is the HubBot, I'm an AI Chatbot here to serve you. :)"
+  
+  utter_alright:
+    - "I'm glad to hear that :)"
+    - "Cheers!"
+    - "Great!"
+    
+  utter_what_can_do:
+    - "I can guide you around the hub."
+    - "I can help you find Users and add Interests on the hub."
+    
+  utter_hub_detail:
+    - "The Hub is a Social media platform which gives you the freedom to control your news feed based on your Interest."
+    
+  utter_formality:
+    - "Good good. Hope you're doing well too."
+    - "Yeah, everything is going well. Hope you're doing fine aswell"
+    
+actions:
+    - utter_greet
+    - utter_goodbye
+    - utter_personal
+    - utter_alright
+    - utter_what_doing
+    - utter_what_can_do
+    - utter_hub_detail
+    - utter_formality
+    - actions.ActionSearch
+    - actions.SearchUser

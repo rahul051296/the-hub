@@ -1,0 +1,649 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "text": "hey",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "hello",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "heyya",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "hola",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "hi",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "hi man",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "good morning",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "Hey dude",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "hi bot",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "yo",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "Hie",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "hai",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "bye",
+        "intent": "goodbye",
+        "entities": []
+      },
+      {
+        "text": "Bye dude",
+        "intent": "goodbye",
+        "entities": []
+      },
+      {
+        "text": "Talk to you later",
+        "intent": "goodbye",
+        "entities": []
+      },
+      {
+        "text": "see you later",
+        "intent": "goodbye",
+        "entities": []
+      },
+      {
+        "text": "Got to run",
+        "intent": "goodbye",
+        "entities": []
+      },
+      {
+        "text": "thank you ",
+        "intent": "goodbye",
+        "entities": []
+      },
+      {
+        "text": "c u",
+        "intent": "goodbye",
+        "entities": []
+      },
+      {
+        "text": "bubye",
+        "intent": "goodbye",
+        "entities": []
+      },
+      {
+        "text": "good bye",
+        "intent": "goodbye",
+        "entities": []
+      },
+      {
+        "text": "good night",
+        "intent": "goodbye",
+        "entities": []
+      },
+      {
+        "text": "bye man",
+        "intent": "goodbye",
+        "entities": []
+      },
+      {
+        "text": "bye bot",
+        "intent": "goodbye",
+        "entities": []
+      },
+      {
+        "text": "Who are you?",
+        "intent": "personal",
+        "entities": []
+      },
+      {
+        "text": "What are you?",
+        "intent": "personal",
+        "entities": []
+      },
+      {
+        "text": "What is your name?",
+        "intent": "personal",
+        "entities": []
+      },
+      {
+        "text": "Your name?",
+        "intent": "personal",
+        "entities": []
+      },
+      {
+        "text": "May i know who you are?",
+        "intent": "personal",
+        "entities": []
+      },
+      {
+        "text": "What are you doing?",
+        "intent": "what_doing",
+        "entities": []
+      },
+      {
+        "text": "What's up?",
+        "intent": "what_doing",
+        "entities": []
+      },
+      {
+        "text": "Sup?",
+        "intent": "what_doing",
+        "entities": []
+      },
+      {
+        "text": "What doing man?",
+        "intent": "what_doing",
+        "entities": []
+      },
+      {
+        "text": "What's going on?",
+        "intent": "what_doing",
+        "entities": []
+      },
+      {
+        "text": "What are you upto?",
+        "intent": "what_doing",
+        "entities": []
+      },
+      {
+        "text": "You are",
+        "intent": "alright",
+        "entities": []
+      },
+      {
+        "text": "yes",
+        "intent": "alright",
+        "entities": []
+      },
+      {
+        "text": "thank you",
+        "intent": "alright",
+        "entities": []
+      },
+      {
+        "text": "you are helpful",
+        "intent": "alright",
+        "entities": []
+      },
+      {
+        "text": "You're awesome",
+        "intent": "alright",
+        "entities": []
+      },
+      {
+        "text": "Love you",
+        "intent": "alright",
+        "entities": []
+      },
+      {
+        "text": "amazing",
+        "intent": "alright",
+        "entities": []
+      },
+      {
+        "text": "What can you do?",
+        "intent": "what_can_do",
+        "entities": []
+      },
+      {
+        "text": "What you do?",
+        "intent": "what_can_do",
+        "entities": []
+      },
+      {
+        "text": "What is your job",
+        "intent": "what_can_do",
+        "entities": []
+      },
+      {
+        "text": "You can do what?",
+        "intent": "what_can_do",
+        "entities": []
+      },
+      {
+        "text": "What is your purpose?",
+        "intent": "what_can_do",
+        "entities": []
+      },
+      {
+        "text": "What is the hub?",
+        "intent": "hub_detail",
+        "entities": []
+      },
+      {
+        "text": "What is this website",
+        "intent": "hub_detail",
+        "entities": []
+      },
+      {
+        "text": "What is this site?",
+        "intent": "hub_detail",
+        "entities": []
+      },
+      {
+        "text": "Is this like a new social media platform?",
+        "intent": "hub_detail",
+        "entities": []
+      },
+      {
+        "text": "What is this a social site?",
+        "intent": "hub_detail",
+        "entities": []
+      },
+      {
+        "text": "What do you mean based on Interests?",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 26,
+            "end": 35,
+            "value": "Interests",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "How will you know my interests?",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 21,
+            "end": 30,
+            "value": "interests",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "You know my interests?",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 12,
+            "end": 21,
+            "value": "interests",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "Interests?",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "Interests",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "How do i follow other users?",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 22,
+            "end": 27,
+            "value": "users",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "Where are other users?",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 16,
+            "end": 21,
+            "value": "users",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "Where are all the users?",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 18,
+            "end": 23,
+            "value": "users",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "who are the users?",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 12,
+            "end": 17,
+            "value": "users",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "who uses the hub",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 4,
+            "end": 8,
+            "value": "users",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "nothing much, what about you?",
+        "intent": "what_doing",
+        "entities": []
+      },
+      {
+        "text": "how do i add an interest",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 16,
+            "end": 24,
+            "value": "interest",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "how to add a user",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 13,
+            "end": 17,
+            "value": "user",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "How are you?",
+        "intent": "formality",
+        "entities": []
+      },
+      {
+        "text": "How you doing?",
+        "intent": "formality",
+        "entities": []
+      },
+      {
+        "text": "How's you?",
+        "intent": "formality",
+        "entities": []
+      },
+      {
+        "text": "How are you man?",
+        "intent": "formality",
+        "entities": []
+      },
+      {
+        "text": "How's life?",
+        "intent": "formality",
+        "entities": []
+      },
+      {
+        "text": "How's everything going?",
+        "intent": "formality",
+        "entities": []
+      },
+      {
+        "text": "add an interest",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 7,
+            "end": 15,
+            "value": "interest",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "adding interest?",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 7,
+            "end": 15,
+            "value": "interest",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "i want to add an interest",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 17,
+            "end": 25,
+            "value": "interest",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "How to add interest?",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 11,
+            "end": 19,
+            "value": "interest",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "add an user",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 7,
+            "end": 11,
+            "value": "user",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "finding user",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 8,
+            "end": 12,
+            "value": "user",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "i want to add an user",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 17,
+            "end": 21,
+            "value": "user",
+            "entity": "query"
+          }
+        ]
+      },
+      {
+        "text": "search for Rahul",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 11,
+            "end": 16,
+            "value": "Rahul",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "I want to search for Rohan",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 21,
+            "end": 26,
+            "value": "Rohan",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "I want you to find Kumar ",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 19,
+            "end": 24,
+            "value": "Kumar",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "Can you search for Mkbhd",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 19,
+            "end": 24,
+            "value": "Mkbhd",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "Ron search",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 0,
+            "end": 3,
+            "value": "Ron",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "Find casey",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 5,
+            "end": 10,
+            "value": "casey",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "can you find any John?",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 17,
+            "end": 21,
+            "value": "John",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "find thomas",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 5,
+            "end": 11,
+            "value": "thomas",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "i want you to find kumaresh",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 19,
+            "end": 27,
+            "value": "kumaresh",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "can you find manoj prabhakar",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 13,
+            "end": 28,
+            "value": "manoj prabhakar",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "please search for patol babu",
+        "intent": "hub_detail",
+        "entities": [
+          {
+            "start": 18,
+            "end": 28,
+            "value": "patol babu",
+            "entity": "user"
+          }
+        ]
+      }
+    ]
+  }
+}

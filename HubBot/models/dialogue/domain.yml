@@ -1,0 +1,76 @@
+action_factory: null
+action_names:
+- utter_greet
+- utter_goodbye
+- utter_personal
+- utter_alright
+- utter_what_doing
+- utter_what_can_do
+- utter_hub_detail
+- utter_formality
+- utter_info
+- utter_search
+actions:
+- utter_greet
+- utter_goodbye
+- utter_personal
+- utter_alright
+- utter_what_doing
+- utter_what_can_do
+- utter_hub_detail
+- utter_formality
+- actions.ActionSearch
+- actions.SearchUser
+config:
+  store_entities_as_slots: true
+entities:
+- query
+- user
+intents:
+- greet
+- goodbye
+- fetch
+- formality
+- personal
+- what_doing
+- alright
+- what_can_do
+- hub_detail
+slots:
+  query:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  user:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+templates:
+  utter_alright:
+  - text: I'm glad to hear that :)
+  - text: Cheers!
+  - text: Great!
+  utter_formality:
+  - text: Good good. Hope you're doing well too.
+  - text: Yeah, everything is going well. Hope you're doing fine aswell
+  utter_goodbye:
+  - text: Bye Bye
+  - text: Goodbye! :D
+  - text: See you soon! :)
+  utter_greet:
+  - text: Hey! How can i help?
+  - text: Hey, What's up?
+  - text: Hola!
+  - text: Hey!
+  utter_hub_detail:
+  - text: The Hub is a Social media platform which gives you the freedom to control
+      your news feed based on your Interest.
+  utter_personal:
+  - text: I'm the HubBot! I can guide you around the hub if you need any help. :)
+  - text: My name is the HubBot, I'm an AI Chatbot here to serve you. :)
+  utter_what_can_do:
+  - text: I can guide you around the hub.
+  - text: I can help you find Users and add Interests on the hub.
+  utter_what_doing:
+  - text: Nothing much, mostly just work..
+  - text: Just the usual routine..
+  - text: Doing my job as usual..
+topics: []

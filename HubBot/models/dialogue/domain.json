@@ -1,0 +1,29 @@
+{
+  "features": [
+    "intent_greet",
+    "intent_goodbye",
+    "intent_fetch",
+    "intent_formality",
+    "intent_personal",
+    "intent_what_doing",
+    "intent_alright",
+    "intent_what_can_do",
+    "intent_hub_detail",
+    "entity_query",
+    "entity_user",
+    "slot_query_0",
+    "slot_user_0",
+    "prev_action_listen",
+    "prev_action_restart",
+    "prev_utter_greet",
+    "prev_utter_goodbye",
+    "prev_utter_personal",
+    "prev_utter_alright",
+    "prev_utter_what_doing",
+    "prev_utter_what_can_do",
+    "prev_utter_hub_detail",
+    "prev_utter_formality",
+    "prev_utter_info",
+    "prev_utter_search"
+  ]
+}

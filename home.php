@@ -41,6 +41,7 @@
         <title>Home</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/bot.css">
         <link rel="stylesheet" href="css/styles.css">
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -81,7 +82,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Interests</a>
-                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="interests.php">Add Interests</a>
                                 <a class="dropdown-item" href="findusers.php">Find Users</a>
                                 <a class="dropdown-item" href="discover.php">Discover</a>
@@ -184,13 +185,37 @@
                     </div>
                     <div class="col-md-8 col-sm-12 mars-btm-20 text-md-left text-center text-lg-center wow animated fadeIn">
                         <form action="home.php" method="post" name="postForm">
-                            <textarea id="home-textarea"  class="form-control" type="text" placeholder="Share your thoughts" name="posted" style="resize:none; height:120px; box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);" required></textarea>
+                            <textarea id="home-textarea" class="form-control" type="text" placeholder="Share your thoughts" name="posted" style="resize:none; height:120px; box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);" required></textarea>
                             <button type="submit" name="update" class="btn btn-block btn-primary mars-top-10" style="box-shadow: -1px 1px 10px 0.1px rgba(0, 0, 0, 0.35);">POST</button>
                         </form>
-                    <div class="mars-top-10 container" id="filter">      
-                    </div>
+                        <div class="mars-top-10 container" id="filter">
+                        </div>
                         <div id="posts" class="mars-top-10"></div>
                     </div>
+                </div>
+                
+                <div id="chat-open">
+                    <div class="col-12" id="main-box">
+                        <header class="header">
+                            <h5 class="text-left">Hub Bot (AI Chatbot)</h5>
+                            <h6><span><i class="fas fa-circle"></i></span> Online</h6>
+                            <span class="closer" onclick="closechat()"><i class="fas fa-times"></i></span>
+                        </header>
+                        <div id="chat-container">
+                            <ul id="conversation">
+                            </ul>
+                            <div id="bottom"></div>
+                        </div>
+                        <section class="row" id="input">
+                            <div class="col-9 col-md-10" style="padding-right: 0">
+                                <input type="text" id="chat-input" placeholder="Enter your message" class="form-control">
+                            </div>
+                            <div class="col-3 col-md-2" style="padding-left: 5px">
+                                <button id="btn" class="btn btn-primary btn-block" onclick="send()"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </section>
+                    </div>
+                    <div id="fab" class="shadow" onclick="openchat()"><i class="fas fa-1x fa-envelope-open"></i></div>
                 </div>
             </article>
         </section>
@@ -201,8 +226,11 @@
         <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
         <script src="js/wow.js"></script>
         <script>
-        new WOW().init();
+            new WOW().init();
+
         </script>
+        <script src="js/chat.js"></script>
+        <script src="js/bot.js"></script>
         <script src="js/posts.js"></script>
     </body>
 

@@ -25,9 +25,10 @@
         <meta name="theme-color" content="#243447">
         <title>Search</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bot.css">
         <link rel="stylesheet" href="css/styles.css">
-         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
     </head>
 
     <body>
@@ -43,8 +44,8 @@
 
                 <!-- Navbar links -->
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                   <ul class="navbar-nav">
-                       <li class="nav-item">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
 
                             <form action="search.php?" method="get" name="searchForm">
                                 <div class="input-group">
@@ -57,15 +58,15 @@
                                 </div>
                             </form>
                         </li>
-                   </ul>
+                    </ul>
                     <ul class="navbar-nav ml-auto">
 
                         <li class="nav-item">
                             <a class="nav-link" href="home.php">Home</a>
                         </li>
-                           <li class="nav-item dropdown">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Interests</a>
-                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="interests.php">Add Interests</a>
                                 <a class="dropdown-item" href="findusers.php">Find Users</a>
                                 <a class="dropdown-item" href="discover.php">Discover</a>
@@ -87,13 +88,13 @@
                 </div>
             </div>
         </nav>
-        <article >
+        <article>
             <div class="col-12 text-center" id="settings-title">
-                    <h1 class="title">Other Users</h1>
-                </div>
-            <section class="container"id="search-results">
-                     <div class="row">
-                         <?php
+                <h1 class="title">Other Users</h1>
+            </div>
+            <section class="container" id="search-results">
+                <div class="row">
+                    <?php
                             while($srow=$result->fetch_assoc()){
                                 
                                 if($srow["FollowTest"] == 1){
@@ -130,14 +131,38 @@
                         </div>';
                             }
                               ?>
+                </div>
+                <div id="chat-open">
+                    <div class="col-12" id="main-box">
+                        <header class="header">
+                            <h5 class="text-left">Hub Bot (AI Chatbot)</h5>
+                            <h6><span><i class="fas fa-circle"></i></span> Online</h6>
+                            <span class="closer" onclick="closechat()"><i class="fas fa-times"></i></span>
+                        </header>
+                        <div id="chat-container">
+                            <ul id="conversation">
+                            </ul>
+                            <div id="bottom"></div>
                         </div>
+                        <section class="row" id="input">
+                            <div class="col-9 col-md-10" style="padding-right: 0">
+                                <input type="text" id="chat-input" placeholder="Enter your message" class="form-control">
+                            </div>
+                            <div class="col-3 col-md-2" style="padding-left: 5px">
+                                <button id="btn" class="btn btn-primary btn-block" onclick="send()"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </section>
+                    </div>
+                    <div id="fab" class="shadow" onclick="openchat()"><i class="fas fa-1x fa-envelope-open"></i></div>
+                </div>
             </section>
         </article>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
-        <!--        <script src="js/index.js"></script>-->
+        <script src="js/chat.js"></script>
+        <script src="js/bot.js"></script>
     </body>
 
     </html>

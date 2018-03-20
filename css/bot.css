@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans');
+@import url('https://fonts.googleapis.com/css?family=Righteous');
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'IBM Plex Sans', sans-serif;
+
+}
+#chat-container {
+    height: 300px;
+    width: 350px;
+    padding: 30px;
+    overflow-y: auto;
+}
+li{
+    list-style: none;
+}
+.fa-circle{
+    color: #00ff00;
+    font-size: 0.6em;
+}
+h6{
+    font-size: 0.8em;
+}
+.link{
+    color: blue;
+}
+.header{
+    background: #243447;
+    font-family: 'Righteous', cursive !important;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px 10px 0px 0px;
+}
+.sender{
+    background: #3598db;
+    color: #fff;
+    border-radius: 10px;
+    float: right;
+    clear: both;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.responder{
+    background: #e7eaf1;
+    color: #000;
+    border-radius: 10px;
+    float: left;
+    clear: both;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+#main-box {
+    margin-top: 70px;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    padding-right: 0;
+    background: #fff;
+    box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
+}
+#input{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+@media only screen and (max-width:360px) {
+    #chat-container {
+    width: 300px;
+}
+}

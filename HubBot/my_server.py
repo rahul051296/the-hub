@@ -23,7 +23,7 @@ class SimpleWebBot(HttpInputComponent):
 
     def blueprint(self, on_new_message):
         app = Blueprint('app', __name__)
-
+        
         CORS(app)
         logging.getLogger('flask_cors').level = logging.DEBUG
 
@@ -35,7 +35,7 @@ class SimpleWebBot(HttpInputComponent):
         @cross_origin()
         def respond():
             text = request.args.get('q')
-            sender_id = "rahul"
+            sender_id = request.args.get('id')
             out = CollectingOutputChannel()
             on_new_message(UserMessage(text, out, sender_id))
             responses = [m for _, m in out.messages]

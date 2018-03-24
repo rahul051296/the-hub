@@ -1,4 +1,14 @@
 //python server.py -d models/dialogue -u models/nlu/default/wordsnlu -o out.log --cors *
+let id = '';
+let test = document.cookie.split(';');
+for (t of test){
+    if(t.includes("PHPSESSID")){
+        keys = t.split('=');
+        id = keys[1];
+        break;
+    }
+}
+
 
 let ul = document.getElementById('conversation');
 var chat = document.getElementById("chat-container");
@@ -14,7 +24,7 @@ function send(){
     chat.scrollTop = chat.scrollHeight;
 }
 function respond(msg){
- let url = `http://localhost:5004/respond?q=${msg}`
+ let url = `http://localhost:5004/respond?q=${msg}&id=${id}`
 fetch(url,{method:'GET'})
 .then((response)=>{
   response.json()

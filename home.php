@@ -30,6 +30,7 @@
         
         $allusers=$dbcon->query($all);
 
+
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -92,6 +93,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <?php
             echo $name;
+            
             ?>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

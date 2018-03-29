@@ -1,4 +1,18 @@
 //python server.py -d models/dialogue -u models/nlu/default/wordsnlu -o out.log --cors *
+let urle = `http://localhost:5004/status`
+
+window.onload = function(){
+    fetch(urle)
+    .then(function(){
+        console.log("Bot Online");
+        document.getElementById('status').innerHTML = `<span><i class="fas fa-circle"></i></span> Online`;        
+    })
+    .catch(function(){
+        console.log("Bot Offline");
+        document.getElementById('status').innerHTML = `<span><i class="fas fa-circle" style="color:red"></i></span> Offline`;
+    });
+};
+
 let id = '';
 let test = document.cookie.split(';');
 for (t of test){

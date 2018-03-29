@@ -205,7 +205,7 @@ $postId = $_REQUEST["postId"];
                 <div class="col-12" id="main-box">
                     <header class="header">
                         <h5 class="text-left">Hub Bot (AI Chatbot)</h5>
-                        <h6><span><i class="fas fa-circle"></i></span> Online</h6>
+                        <h6 id="status"><span><i class="fas fa-circle" style="color:grey"></i></span> Checking...</h6>
                         <span class="closer" onclick="closechat()"><i class="fas fa-times"></i></span>
                     </header>
                     <div id="chat-container">
@@ -222,7 +222,8 @@ $postId = $_REQUEST["postId"];
                         </div>
                     </section>
                 </div>
-                <div id="fab" class="shadow" onclick="openchat()"><i class="fas fa-1x fa-envelope-open"></i></div>
+                <div id="fab" class="shadow" onclick="openchat()"><i class="fas fa-1x fa-envelope"></i></div>
+                <div id="fab-close" class="shadow" onclick="closechat()"><i class="fas fa-1x fa-envelope-open"></i></div>
             </div>
         </section>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

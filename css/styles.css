@@ -195,6 +195,19 @@ input:checked + .slider:before {
     display: inline;
     cursor: pointer;
 }
+#fab-close {
+    z-index: 3;
+    position: fixed;
+    right: 1%;
+    bottom: 1%;
+    font-size: 2em;
+    padding: 8px 15px;
+    background: #243447;
+    border-radius: 100%;
+    color: white;
+    display: inline;
+    cursor: pointer;
+}
 
 #start {
     margin-top: 50px;
@@ -766,7 +779,7 @@ button:focus {
     left: 4%;
 }
 
-img[alt*="www.000webhost.com"] {
+img[alt*="000webhost logo"] {
     display: none;
 }
 

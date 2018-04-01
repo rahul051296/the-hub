@@ -362,7 +362,13 @@
                         <header class="header">
                             <h5 class="text-left">Hub Bot (AI Chatbot)</h5>
                             <h6 id="status"><span><i class="fas fa-circle" style="color:grey"></i></span> Checking...</h6>
-                            <span class="closer" onclick="closechat()"><i class="fas fa-times"></i></span>
+                            <span class="closer">
+                                <span class="voice-box" title="Listen to the HubBot"><input type="checkbox" onclick="voice();" id="voice" name="voice">
+                                <label for="voice" class="label-color-voice">
+                                <i class="fas fa-volume-up"></i>
+                                </label>
+                                </span>
+                            </span> 
                         </header>
                         <div id="chat-container">
                             <ul id="conversation">
@@ -399,7 +405,6 @@
         <script>
         new WOW().init();
         </script>
-        <script src="js/chat.js"></script>
         <script src="js/bot.js"></script>
     </body>
 

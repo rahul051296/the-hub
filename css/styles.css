@@ -167,48 +167,6 @@ input:checked + .slider:before {
     margin-top: 10px;
 }
 
-#chat-open {
-    position: fixed;
-    bottom: 12%;
-    left: 100%;
-    margin-left: -360px;
-    z-index: 3;
-}
-
-.closer {
-    float: right;
-    margin-top: -50px;
-    color: #fff;
-    cursor: pointer;
-}
-
-#fab {
-    z-index: 4;
-    position: fixed;
-    right: 1%;
-    bottom: 1%;
-    font-size: 2em;
-    padding: 8px 15px;
-    background: #243447;
-    border-radius: 100%;
-    color: white;
-    display: inline;
-    cursor: pointer;
-}
-#fab-close {
-    z-index: 3;
-    position: fixed;
-    right: 1%;
-    bottom: 1%;
-    font-size: 2em;
-    padding: 8px 15px;
-    background: #243447;
-    border-radius: 100%;
-    color: white;
-    display: inline;
-    cursor: pointer;
-}
-
 #start {
     margin-top: 50px;
     padding: 20px;
@@ -824,14 +782,6 @@ img[alt*="000webhost logo"] {
         text-align: left;
         object-fit: cover;
 
-    }
-    #chat-open {
-        position: fixed;
-        top: 7%;
-        left: 100%;
-        width: 300px;
-        margin-left: -310px;
-        z-index: 3;
     }
     #mb-view h5 {
         font-size: 1.2em;

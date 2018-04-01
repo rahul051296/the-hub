@@ -11,3 +11,5 @@ HubBot/requirements.txt
 HubBot/rasa_core.log
 HubBot/out.log
 HubBot/stories.md
+js/.jshintrc
+.idea/

@@ -1,0 +1,13 @@
+## intent:user.busy
+- busy right now
+- I'm overloaded
+- I have no time
+- I'm busy
+- I'm swamped
+- I got things to do
+- how busy I am
+- I got work to do
+- I'm working
+- I don't have time for this
+- I'm super busy
+- I'm working right now

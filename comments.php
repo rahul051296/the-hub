@@ -17,7 +17,6 @@ $postId = $_REQUEST["postId"];
     $commentQuery = "SELECT comments.*, pictures.Profile, users.Name FROM comments,pictures, users WHERE PostId ='$postId' AND comments.Username = pictures.Username AND users.Username= pictures.Username ORDER BY CommentId";
     $allcomments=$dbcon->query($commentQuery);
 
-
     if(isset($_POST["comment"])){
         $commented = mysqli_real_escape_string($dbcon, $_POST['commentbox']);
         $insert = "INSERT INTO `comments` (`PostId`, `Username`, `Comment`,`Time`) VALUES ('$postId','$username','$commented','".date('U')."')";

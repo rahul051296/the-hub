@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 
 from rasa_core.actions.action import Action
 from rasa_core.events import SlotSet
+from soup import search_word_meaning, search_weather_details, translate_word
 
 
 class ActionSearch(Action):
@@ -36,3 +37,45 @@ class SearchUser(Action):
                 user, user)
         dispatcher.utter_message(response)
         return [SlotSet('user', None)]
+
+class GetWeatherDetails(Action):
+    def name(self):
+        return 'utter_weather_details'
+
+    def run(self, dispatcher, tracker, domain):
+        location = str(tracker.get_slot('location'))
+        if location == 'None':
+            dispatcher.utter_message('You will have to provide the location for me to get you the weather details  ')
+        else:
+            message = search_weather_details(location)
+            dispatcher.utter_message(message)
+        return [SlotSet('location', None)]
+
+
+class GetWordMeaning(Action):
+    def name(self):
+        return 'utter_word_meaning'
+
+    def run(self, dispatcher, tracker, domain):
+        word = str(tracker.get_slot('meaning'))
+        if word == 'None':
+            dispatcher.utter_message('What meaning would you like to know?')
+        else:
+            message = search_word_meaning(word)
+            dispatcher.utter_message(message)
+        return [SlotSet('meaning', None)]
+
+
+class GetTranslation(Action):
+    def name(self):
+        return 'utter_translate_data'
+
+    def run(self, dispatcher, tracker, domain):
+        word = str(tracker.get_slot('word'))
+        language = str(tracker.get_slot('language'))
+        if (word == 'None') or (language == 'None'):
+            dispatcher.utter_message("You have to provide the word and language in order for me to translate")
+        else:
+            message = translate_word(word, language)
+            dispatcher.utter_message(message)
+            return [SlotSet('language', None)]

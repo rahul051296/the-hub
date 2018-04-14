@@ -1,0 +1,37 @@
+## intent:word_meaning
+- get me the meaning of [life](meaning)
+- give me the meaning of [mouse](meaning)
+- meaning for [computer](meaning)
+- meaning for the word [rat](meaning)
+- what is the meaning of [keyboard](meaning)
+- find meaning for word [pencil box](meaning)
+- find meaning for word [mountain](meaning)
+- what is the meaning of [tumbling](meaning)?
+- meaning of [falling](meaning)
+- what is the meaning of [columns](meaning)
+- what is the meaning of [serenity](meaning)?
+- what does [tranquility](meaning) mean?
+- what is the meaning of [peacefullness](meaning)?
+- what does [organic chemistry](meaning) mean?
+- what is the meaning of [internal state](meaning)?
+- [pandemonium](meaning) means?
+- [ghost rider](meaning) meaning
+- [lemon spoon](meaning) meaning
+- [ghost](meaning) meaning
+- [lemon](meaning) meaning
+- [anxious](meaning) means
+- [bottle](meaning) word meaning
+- [bottle neck](meaning) word meaning
+- [ticket](meaning) meaning
+- meaning for word [dog](meaning)
+- meaning of [thank you](meaning)
+- what is the meaning of [come again](meaning)
+- meaning for [water](meaning)
+- meaning for [bottle](meaning)
+- I want to know meaning for [cloud computing](meaning).
+- meaning of [cloud computing](meaning).
+- meaning for [water bottle](meaning)
+- meaning for [eye balls](meaning)
+- meaning for [distilled water](meaning)
+
+- What is a Mesozoic era

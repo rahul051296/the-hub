@@ -1,0 +1,62 @@
+## intent:weather_details
+- get me the weather of [chennai](location)
+- get me the weather for [banglore](location)
+- get me the weather for [mumbai tomorrow](location)
+- weather today in [london](location)
+- [new york](location) weather
+- what is the weather in [kolkata](location)
+- what is the weather in [Azerbaijan tomorrow](location) 
+- what is the weather in [vatican yesterday](location)
+- climate in [Dubai](location)
+- temperature in [new jersey](location)
+- [delhi's](location) temperature
+- [chennai's](location) weather
+- weather in [toronto](location)
+- weather in [kingston](location)
+- what is the weather in [new south wales](location)
+- [washington dc](location) weather
+- [washington dc](location) temperature
+- [delhi](location) temperature
+- [chennai](location) weather
+- [new delhi's](location) temperature
+- [new delhi's](location) climate
+- [delhi's](location) climate
+- [chennai](location) climate
+- [washington dc](location) climate
+- [delhi](location) climate
+- [navi mumbai](location) climate
+- [new delhi's](location) climate
+- [new jersey's](location) weather
+- i want to know the weather details of weather in [paris](location)
+- i want to know the [barcelona's](location) weather details 
+- i need [vijayawada's](location) temperature
+- what is the temperature in [new delhi](location)
+- what is weather in [washington dc](location)
+- what is [new york's](location) weather 
+- tell me [srinagar](location) temperature
+- tell me [kochi](location) temperature
+- tell me the temperature in [lucknow](location)
+- What is the weather report of [kolkata](location)
+- what about weather in [tanjore](location)
+- what is the temperature in [hyderabad](location)
+- weather in [london](location)
+- location is [chennai](location)
+- location is [new york](location)
+- [chennai](location) is the location 
+- [new york](location) is the location
+- in [chennai](location)
+- in [navi mumbai](location)
+- how's the climate
+- how is climate
+- how about temperature
+- how's weather
+- how about the weather
+- location is [new delhi](location)
+- location is [pune](location)
+- what about [coimbatore](location)
+- weather in [chennai](location)
+- what about [coimbatore](location)
+- what about [mumbai](location)
+- what about [seattle](location)
+- what about [mumbai](location)'
+- what about [kingston](location)

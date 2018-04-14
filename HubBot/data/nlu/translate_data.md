@@ -1,0 +1,22 @@
+## intent:translate_data
+- [dog](word) in [tamil](language)
+- translate [cook](word) to [hindi](language)
+- i want you to translate [computer](word) to [tamil](language)
+- [umbrella](word) to [spanish](language)
+- translate [mouse](word) to [telugu](language)
+- translate [bull](word) to [tamil](language) 
+- [horse](word) in [Hindi](language)
+- translate [orange](word) to [Malayalam](language)
+- what is [tiger](word) in [Tamil](language)
+- what is [apple](word) in [Korean](language)
+- what is [football](word) in [Japanese](language) 
+- what's the translation of [insecure](word) in [Bengali](language)
+- tell me the translation of [tense](word) in [Tamil](language)
+- what does [stationed](word) mean in [Tamil](language)
+- what does [edgy](word) mean in [French](language)?
+- what is the meaning of [agitated](word) in [Kannada](language)
+- what is the translation of [worried](word) in [Tamil](language)?
+- what is the meaning of [cool](word) in [Spanish](language)?
+- what is [monster](word) in [hindi](language)?
+- translate [fast](word) to [tamil](language) for me please
+- i need the translation of [puppy](word) in [tamil](language) please

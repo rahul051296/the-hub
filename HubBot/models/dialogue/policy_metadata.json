@@ -2,31 +2,61 @@
   "action_fingerprints": {
     "action_listen": {
       "slots": [
+        "language",
+        "word",
+        "meaning",
         "user",
+        "query",
+        "location"
+      ]
+    },
+    "utter_word_meaning": {
+      "slots": [
+        "meaning"
+      ]
+    },
+    "null": {
+      "slots": [
+        "word",
+        "language"
+      ]
+    },
+    "utter_translate_data": {
+      "slots": [
+        "language"
+      ]
+    },
+    "utter_info": {
+      "slots": [
         "query"
       ]
     },
-    "utter_goodbye": {
+    "utter_greetings.goodnight": {
       "slots": []
     },
-    "utter_alright": {
+    "utter_hub_detail": {
       "slots": []
+    },
+    "utter_greetings.bye": {
+      "slots": []
+    },
+    "utter_weather_details": {
+      "slots": [
+        "location"
+      ]
     },
     "utter_search": {
       "slots": [
         "user"
       ]
     },
-    "utter_personal": {
+    "utter_dialog.i_do_not_care": {
       "slots": []
     },
-    "utter_hub_detail": {
+    "utter_agent.ready": {
       "slots": []
     },
-    "utter_info": {
-      "slots": []
-    },
-    "utter_what_can_do": {
+    "utter_confirmation.yes": {
       "slots": []
     }
   },

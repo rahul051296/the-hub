@@ -1,0 +1,16 @@
+## intent:dialog.what_do_you_mean
+- what exactly do you mean?
+- what do you mean? 
+- is that what you mean
+- what do you mean exactly?
+- but what do you mean
+- what did you mean?
+- i don't understand what you meant
+- what did you blabber?
+- don't blabber
+- you're blabbering
+- don't babble 
+- why do you bore me
+- Okay don't bore me
+- you don't understand like anything
+- Why do you lie

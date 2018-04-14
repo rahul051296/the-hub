@@ -1,12 +1,12 @@
-//python server.py -d models/dialogue -u models/nlu/default/wordsnlu -o out.log --cors *
-
 let chatbox = document.getElementById('main-box');
 let fab = document.getElementById('fab');
 let fab_close = document.getElementById('fab-close');
 let ul = document.getElementById('conversation');
 let chat = document.getElementById("chat-container");
 let input = document.getElementById("chat-input");
+let id = getId();
 
+const URL = 'http://localhost:8081/api/v1';
 
 input.addEventListener("keyup", function (event) {
     event.preventDefault();
@@ -16,16 +16,17 @@ input.addEventListener("keyup", function (event) {
 });
 
 window.onload = function () {
-    fetch(`http://localhost:5004/status`)
-        .then(function () {
-            console.log("Bot Online");
-            document.getElementById('status').innerHTML = `<span><i class="fas fa-circle"></i></span> Online`;
+    let status = document.getElementById('status');
+    fetch(`${URL}/status`, {
+        method: 'GET'
+    })
+        .then(function (response) {
+            status.innerHTML = "<i class='fas fa-circle'></i> Online";
         })
-        .catch(function () {
-            console.log("Bot Offline");
-            document.getElementById('status').innerHTML = `<span><i class="fas fa-circle" style="color:red"></i></span> Offline`;
-        });
-};
+        .catch(function (response) {
+            status.innerHTML = "<i class='fas fa-circle' style='color:red'></i> Offline";
+        })
+}
 
 function openchat() {
     chatbox.style.display = "block";
@@ -37,6 +38,25 @@ function closechat() {
     chatbox.style.display = "none";
     fab_close.style.display = "none";
     fab.style.display = "block";
+}
+
+function createSender(msg) {
+    let li = document.createElement('li');
+    li.appendChild(document.createTextNode(msg));
+    li.className = "sender"
+    ul.appendChild(li);
+    document.getElementById('chat-input').value = "";
+    chat.scrollTop = chat.scrollHeight;
+}
+
+function createResponder(msg) {
+let li = document.createElement('li');
+li.innerHTML = msg;
+if (voice() == true)
+    speak(li.innerText);
+li.className = 'responder';
+ul.appendChild(li)
+chat.scrollTop = chat.scrollHeight;
 }
 
 function getId() {
@@ -60,32 +80,36 @@ function speak(msg) {
 
 function send() {
     let msg = document.getElementById('chat-input').value;
-    let li = document.createElement('li');
-    li.appendChild(document.createTextNode(msg));
-    li.className = "sender";
-    ul.appendChild(li);
+    createSender(msg);
     respond(msg);
-    document.getElementById('chat-input').value = "";
-    chat.scrollTop = chat.scrollHeight;
 }
 
 function respond(msg) {
-    let id = getId();
-    let url = `http://localhost:5004/respond?q=${msg}&id=${id}`
-    fetch(url, {
-            method: 'GET'
+    data = {
+        query: msg
+    }
+    fetch(`${URL}/${id}/respond`, {
+        method: 'POST',
+        body: JSON.stringify(data)
+    })
+        .then(function (response) {
+            // document.getElementById('typing').style.display = "none";
+            return response.json();
         })
-        .then((response) => {
-            response.json()
-                .then((response) => {
-                    let li = document.createElement('li');
-                    li.innerHTML = response;
-                    if (voice() == true)
-                        speak(li.innerText);
-                    li.className = "responder";
-                    ul.appendChild(li);
-                    chat.scrollTop = chat.scrollHeight;
-                });
+        .then(function (responses) {
+            console.log(responses);
+            if (responses) {
+                for (let response of responses) {
+                    createResponder(response);
+            }
+            } else {
+                createResponder("Sorry, I'm having trouble understanding you, try asking me in an other way")
+            }
+
+        })
+        .catch(function (err) {
+            // document.getElementById('typing').style.display = "none";
+            createResponder("I'm having some technical issues. Try again later :)");
         });
 }
 

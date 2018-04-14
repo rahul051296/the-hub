@@ -1,0 +1,35 @@
+## intent:hub_detail
+- What is the hub?
+- What is this website
+- What is this site?
+- Is this like a new social media platform?
+- What is this a social site?
+- What do you mean based on [Interests](query)?
+- How will you know my [interests](query)?
+- You know my [interests](query)?
+- [Interests](query)?
+- How do i follow other [users](query)?
+- Where are other [users](query)?
+- Where are all the [users](query)?
+- who are the [users](query)?
+- how do i add an [interest](query)
+- how to add a [user](query)
+- adding [interest](query)?
+- i want to add an [interest](query)
+- How to add [interest](query)?
+- add an [user](query)
+- finding [user](query)
+- i want to add an [user](query)
+- search for [Rahul](user)
+- I want to search for [Rohan](user)
+- I want you to find [Kumar](user) 
+- Can you search for [Mkbhd](user)
+- [Ron](user) search
+- Find [casey](user)
+- can you find any [John](user)?"
+- find [thomas](user),
+- i want you to find [kumaresh](user)
+- can you find [manoj prabhakar](user)
+- please search for [patol babu](user)
+- - Oh how do you know my [interest](query)?
+- How do you know my [interests](query)

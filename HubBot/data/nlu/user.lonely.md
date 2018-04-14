@@ -1,0 +1,13 @@
+## intent:user.lonely
+- I am lonely
+- I'm very lonely
+- I'm so lonely
+- I'm really lonely
+- I am feeling lonely
+- I feel lonely
+- I am a loner
+- I don't have any company
+- I don't have anyone else
+- I'm always alone
+- I'm alone
+- am not

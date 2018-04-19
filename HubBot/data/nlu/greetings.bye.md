@@ -34,6 +34,3 @@
 - see you tomorrow
 - ok bye
 - c u
-- c u
-- c u
-- I'm gonna leave

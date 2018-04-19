@@ -53,4 +53,4 @@
 - not okay
 - Nothing
 - Shut up
-- nothing.
+- nothing

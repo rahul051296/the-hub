@@ -5,7 +5,6 @@
 - that is ok
 - I guess
 - okey
-- ye
 - ya
 - ok yes
 - yes it is

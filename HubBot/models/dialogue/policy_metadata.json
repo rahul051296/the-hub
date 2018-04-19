@@ -2,11 +2,11 @@
   "action_fingerprints": {
     "action_listen": {
       "slots": [
-        "language",
+        "query",
         "word",
         "meaning",
+        "language",
         "user",
-        "query",
         "location"
       ]
     },
@@ -14,28 +14,6 @@
       "slots": [
         "meaning"
       ]
-    },
-    "null": {
-      "slots": [
-        "word",
-        "language"
-      ]
-    },
-    "utter_translate_data": {
-      "slots": [
-        "language"
-      ]
-    },
-    "utter_info": {
-      "slots": [
-        "query"
-      ]
-    },
-    "utter_greetings.goodnight": {
-      "slots": []
-    },
-    "utter_hub_detail": {
-      "slots": []
     },
     "utter_greetings.bye": {
       "slots": []
@@ -45,19 +23,41 @@
         "location"
       ]
     },
+    "utter_info": {
+      "slots": [
+        "query"
+      ]
+    },
+    "null": {
+      "slots": [
+        "language",
+        "word"
+      ]
+    },
     "utter_search": {
       "slots": [
         "user"
       ]
     },
+    "utter_confirmation.yes": {
+      "slots": []
+    },
     "utter_dialog.i_do_not_care": {
+      "slots": []
+    },
+    "utter_greetings.goodnight": {
+      "slots": []
+    },
+    "utter_hub_detail": {
       "slots": []
     },
     "utter_agent.ready": {
       "slots": []
     },
-    "utter_confirmation.yes": {
-      "slots": []
+    "utter_translate_data": {
+      "slots": [
+        "language"
+      ]
     }
   },
   "rasa_core": "0.8.5",

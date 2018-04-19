@@ -13,4 +13,3 @@
 - you are a program
 - you are just a bot
 - you are a conversational AI
-- open bot

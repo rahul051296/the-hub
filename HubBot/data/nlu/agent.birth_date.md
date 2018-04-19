@@ -14,4 +14,3 @@
 - when is your DOB
 - Your DOB?
 - What is your birth day?
-- who gave birth to you

@@ -1,40 +1,22 @@
 <?php
-        session_start();
-        if( !isset($_SESSION['username']) ) {
-                header("Location: login.php");
-                exit;
-         }
-        include 'dbconnect.php';
-        $username = $_SESSION['username'];
-        $name = $_SESSION["name"];
-        $profilename = $_REQUEST["user"];
+    session_start();
+if( !isset($_SESSION['username']) ) {
+        header("Location: login.php");
+        exit;
+ }
+    include 'dbconnect.php';
+    $username = $_SESSION['username'];
+    $name = $_SESSION['name'];
+    if(!$dbcon){
+         die('Error Connecting to database');
+    }
+    if(isset($_REQUEST["hashtag"])){
+        $hashtag = $_REQUEST["hashtag"];
+    }
 
-        if(!$dbcon){
-             die('Error Connecting to database');
-        }
-        $rowi = "";
-        $profiledata = mysqli_query($dbcon,"SELECT users.Name,users.Username,users.Email,users.Bio,users.Website,pictures.Profile,pictures.Cover FROM `users`, `pictures` WHERE users.Username = '$profilename' AND pictures.Username = '$profilename'");
 
-        $data = mysqli_fetch_array($profiledata);
-    
-        $pname = $data['Name'];
-        $pusername = $data['Username'];
-        $pprofilepic = $data['Profile'];
-        $pcoverpic = $data['Cover'];
-        $pbio = $data['Bio'];
-        $pweb = $data['Website'];
-
-        $followdata = mysqli_query($dbcon,"SELECT COUNT(follower) as Following FROM followers WHERE Username = '$username' AND Follower = '$pusername'");
-        $following = mysqli_fetch_array($followdata);
-        $fcheck = $following["Following"];
-
-        $posts = "SELECT (SELECT likes.Liked FROM likes WHERE likes.postId=posts.id AND likes.Username='$username') as Liked,(SELECT COUNT(comments.Comment) FROM comments WHERE comments.PostId = posts.Id) as CommentCount,(SELECT COUNT(likes.Liked) FROM likes WHERE likes.Liked = 1 AND posts.Id = likes.postId) as LikeCount, posts.* FROM `posts` WHERE posts.Username = '$profilename' ORDER BY Id DESC";
-        $allposts=$dbcon->query($posts);
-        $pcount = mysqli_num_rows($allposts);
-
-        $friends = "SELECT followers.Follower, pictures.Profile, users.Name, users.Username FROM `followers`,pictures,users WHERE followers.Username = '$profilename' AND followers.Username <> followers.Follower AND pictures.Username = followers.Follower AND followers.Follower = users.Username LIMIT 5";
-        $friendlist = $dbcon->query($friends);
-        $counter = mysqli_num_rows($friendlist);
+$sql = "SELECT DISTINCT (SELECT likes.Liked FROM likes WHERE likes.postId=posts.id AND likes.Username='$username') as Liked,(SELECT COUNT(Liked) FROM likes WHERE likes.postId = posts.Id AND likes.Liked=1) as LikeCount, (SELECT COUNT(COMMENT) FROM comments WHERE postId = posts.id) as CommentCount, posts.Id, posts.Username, posts.Name, posts.Post, posts.Time, pictures.profile FROM pictures, posts,tags WHERE pictures.Username = posts.Username AND LOWER(posts.Post) LIKE LOWER(CONCAT(CONCAT('%','$hashtag'),'%'))ORDER BY Id";
+$result = $dbcon->query($sql);
 
 ?>
     <!DOCTYPE html>
@@ -44,11 +26,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="theme-color" content="#243447">
-        <title>
-            <?php echo $pname;  ?>
-        </title>
+        <title>Discover</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/animate.css">
         <link rel="stylesheet" href="css/bot.css">
         <link rel="stylesheet" href="css/styles.css">
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -56,7 +35,7 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-md bg-custom-2  fixed-top  navbar-dark navbar-fixed">
+        <nav class="navbar navbar-expand-md bg-custom-2 navbar-dark">
             <!-- Brand -->
             <div class="container">
                 <a class="navbar-brand" href="home.php">The Hub</a>
@@ -90,7 +69,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Interests</a>
-                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="interests.php">Add Interests</a>
                                 <a class="dropdown-item" href="findusers.php">Find Users</a>
                                 <a class="dropdown-item" href="discover.php">Discover</a>
@@ -100,7 +79,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <?php
                                 echo $name;
-                                ?>
+                            ?>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="profile.php?user=<?php echo $username; ?>">Profile</a>
@@ -112,150 +91,18 @@
                 </div>
             </div>
         </nav>
-        <article id="cover">
-            <div class="container wow animated fadeIn">
-                <div id="profile-head" class="">
-                    <img src=<?php if($pprofilepic!='' ) { echo "'$pprofilepic'"; } else{ echo "'img/profile_pic/default.png'"; } ?> width="200px" class="img-responsive img-rounded" id="profile-pic" />
-                </div>
-                <div id="profile-details">
-                    <h2>
-                        <?php echo $pname; ?>
-                    </h2>
-                    <h5>&#64;
-                        <?php echo $pusername; ?>
-                    </h5>
-                    <p class="col-md-6 offset-md-3 col-xs-12 col-sm-12">
-
-                        <?php 
-                            if(isset($pbio)){
-                            echo $pbio;
-                            }
-                        ?>
-                    </p>
+        <article>
+            <div class="col-12 text-center" id="interests-title">
+                <h1 class="title"><?php echo ("#".$hashtag); ?></h1>
+            </div>
+            <section class="container mars-top-30">
+                <div class="col-md-8 offset-md-2 col-12">
+                    <div>
+                        <div id="discover">
                     <?php
-                    if(isset($pweb)){
-                        echo '<a href="'.$pweb.'" target="_blank">'.$pweb.'</a>';
-                    }
-                          ?>
-                        <?php 
-                    if($fcheck!=1){
-                        $colors = '
-                        <button id="follow-btn" class="btn btn-outline-primary" name="follow">
-                        <span style="font-size:1.1em;">Follow </span> <i style="font-size:0.8em;" class="fas fa-1x fa-plus-circle"></i>
-                        </button>';
-                    }
-                    else if($fcheck==1){
-                        $colors = '
-                        <button id="unfollow-btn" class="btn btn-primary" name="follow">
-                        <span style="font-size:1.1em;">Following </span> <i style="font-size:0.8em;" class="fas fa-1x fa-check-circle"></i>
-                        </button>';
-                    }
-                        if($username == $pusername){
-                            $followbtn = "";
-                        }
-                    else{
-                        $followbtn = '
-                        <div class="mars-top-30">
-                        '.$colors.'
-                         </div>';  
-                    }
-                    echo $followbtn;
-                         ?>
-
-                        <script>
-                            if (document.getElementById('follow-btn') != null) {
-                                let follow = document.getElementById('follow-btn');
-                                follow.addEventListener("click", function() {
-
-
-                                    let u = "<?php echo $username; ?>";
-                                    let p = "<?php echo $pusername; ?>";
-                                    fetch(`follow.php?username=${u}&follow=${p}&b=1`, {
-                                        method: 'GET'
-                                    });
-                                    follow.className = "btn btn-primary";
-                                    follow.innerHTML = '<span style="font-size:1.1em;">Following </span> <i style="font-size:0.8em;" class="fas fa-1x fa-check-circle"></i>';
-                                    setTimeout(() => {
-                                        location.reload(true);
-
-                                    }, 1000);
-
-                                });
-                            }
-                            if (document.getElementById('unfollow-btn') != null) {
-                                let unfollow = document.getElementById('unfollow-btn');
-                                unfollow.addEventListener("click", function() {
-
-                                    let u = "<?php echo $username; ?>";
-                                    let p = "<?php echo $pusername; ?>";
-                                    fetch(`follow.php?username=${u}&follow=${p}&b=0`, {
-                                        method: 'GET'
-                                    });
-                                    unfollow.className = "btn btn-outline-primary";
-                                    unfollow.innerHTML = '<span style="font-size:1.1em;">Follow </span> <i style="font-size:0.8em;" class="fas fa-1x fa-plus-circle"></i>';
-                                    setTimeout(() => {
-                                        location.reload(true);
-                                    }, 1000);
-
-                                });
-                            }
-
-                        </script>
-
-
-                </div>
-
-                <div class="row" style="margin-top:50px; margin-bottom:50px;">
-                    <div class="col-md-4 d-none d-md-block">
-                        <div class="row">
-                            <div class="col-7">
-                                <h5 class="text-left">Follows</h5>
-                            </div>
-                            <div class="col-5 linked text-right">
-                                <a href="#" style="color:blue">See All</a>
-                            </div>
-                        </div>
-
-                        <div id="other-user" class="container wow animated fadeIn">
-                            <div id="friends-err" class="text-center">
-                                <h5 class="text-muted">No Users Found.</h5>
-                            </div>
-                            <?php
-                            while($row1=$friendlist->fetch_assoc()){
-                                
-                                $url1 = $row1['Profile'];
-                                if($url1!=''){
-                                    $url1 = $row1['Profile']; 
-                                }
-                                else{
-                                    $url1 = "img/profile_pic/default.png";
-                                }
-                                echo 
-                                    '<a href="profile.php?user='.$row1["Username"].'"><div class="row text-left mars-btm-20" id="other-lines">
-                                        <div class="col-3">
-                                            <img src="'.$url1.'" class="rounded"  alt="">
-                                        </div>
-                                        <div class="col-9">
-                                            <h6 style="margin-bottom:0px; font-size:1.1em;">'.$row1["Name"].'</h6>
-                                            <p style="font-size:0.8em;">@'.$row1["Username"].'</p>
-                                        </div>
-                                    </div></a>';
-                            }
-                       ?>
-                        </div>
-                    </div>
-                    <script>
-                        let c = "<?php echo $counter; ?>";
-                        if (c != 0) {
-                            document.getElementById('friends-err').style.display = "none";
-                        }
-                    
-                    </script>
-                    <div class="col-12 col-md-8 wow animated fadeIn" style="margin-top:25px;">
-                        <?php
                         $a =0;
-                    while($row=$allposts->fetch_assoc()){ 
-                        if($pprofilepic!="") {$picurl=$pprofilepic;}
+                    while($row=$result->fetch_assoc()){ 
+                        if($row["profile"]!="") {$picurl=$row["profile"];}
                         else {$picurl = 'img/profile_pic/default.png';}
                         $unix_timestamp = $row["Time"];
                         $a++;
@@ -343,21 +190,10 @@
                             </script>
                             ';
                     }
-                    ?>
-                            <div id="error-err" class="text-center" style="margin-top:48px">
-                                <h5 class="text-muted">No Posts Found.</h5>
-                            </div>
-                            <script>
-                                let pc = "<?php echo $pcount; ?>";
-                                if (pc != 0) {
-                                    document.getElementById('error-err').style.display = "none";
-                                }
-
-                            </script>
+                    ?></div>
                     </div>
                 </div>
-            </div>
-               <div id="chat-open">
+                <div id="chat-open">
                     <div class="col-12" id="main-box">
                         <header class="header">
                             <h5 class="text-left">Hub Bot (AI Chatbot)</h5>
@@ -384,28 +220,18 @@
                             </div>
                         </section>
                     </div>
-                </div>
-                <div id="fab" class="shadow" onclick="openchat()"><i class="fas fa-1x fa-envelope"></i></div>
+                    <div id="fab" class="shadow" onclick="openchat()"><i class="fas fa-1x fa-envelope"></i></div>
                 <div id="fab-close" class="shadow" onclick="closechat()"><i class="fas fa-1x fa-envelope-open"></i></div>
+                </div>
+            </section>
         </article>
-        <?php 
-        if($pcoverpic!=""){
-            echo 
-    "<script>
-        document.getElementById('cover').style.background = 'url($pcoverpic)';
-    </script>"; 
-        }
-        ?>
-
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
-        <script src="js/wow.js"></script>
-        <script>
-        new WOW().init();
-        </script>
+        <!-- <script src="js/hashtag.js"></script> -->
         <script src="js/bot.js"></script>
+
     </body>
 
     </html>

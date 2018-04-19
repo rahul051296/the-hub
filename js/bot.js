@@ -81,6 +81,7 @@ function speak(msg) {
 function send() {
     let msg = document.getElementById('chat-input').value;
     createSender(msg);
+    document.getElementById('typing').style.display = "inline";
     respond(msg);
 }
 
@@ -93,7 +94,7 @@ function respond(msg) {
         body: JSON.stringify(data)
     })
         .then(function (response) {
-            // document.getElementById('typing').style.display = "none";
+            document.getElementById('typing').style.display = "none";
             return response.json();
         })
         .then(function (responses) {
@@ -108,7 +109,7 @@ function respond(msg) {
 
         })
         .catch(function (err) {
-            // document.getElementById('typing').style.display = "none";
+            document.getElementById('typing').style.display = "none";
             createResponder("I'm having some technical issues. Try again later :)");
         });
 }
@@ -119,4 +120,28 @@ function voice() {
         return true;
     else
         return false;
+}
+
+function listen() {
+    let mic = document.getElementById('mic');
+    mic.style.color = 'red';
+    mic.className = 'animated pulse infinite';
+    let hear = new webkitSpeechRecognition();
+    hear.continuous = false;
+    hear.lang = 'en-IN';
+    hear.start();
+
+    hear.onresult = function (e) {
+        mic.style.color = 'black';
+        mic.className = '';
+        userVoiceText = e.results[0][0].transcript;
+        hear.stop();
+        createSender(userVoiceText);
+        respond(userVoiceText);
+    }
+}
+
+function start(msg) {
+    createSender(msg);
+    respond(msg);
 }

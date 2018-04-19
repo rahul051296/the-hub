@@ -8,14 +8,28 @@
 body {
     font-family: 'IBM Plex Sans', sans-serif;
 }
-
+.m-t-10{
+    margin-top:10px; 
+}
+#typing{
+    margin-left: 15px;
+    font-size: 0.8em;
+    position: absolute;
+    bottom: 40px;
+    display: none;
+}
 #chat-container {
     height: 300px;
     width: 350px;
-    padding: 30px;
+    padding: 25px;
     overflow-y: auto;
 }
-
+#mic{
+    position: absolute;
+    left: 90%;
+    bottom: 10.5%;
+    cursor: pointer;
+}
 li {
     list-style: none;
 }

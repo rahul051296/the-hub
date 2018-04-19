@@ -91,7 +91,7 @@ function like(i,id,user,liked){
 }
 
 function hashtag(text){
-    var repl = text.replace(/#(\w+)/g, '<a id="hashtag" href="#">#$1</a>');
+    var repl = text.replace(/#(\w+)/g, '<a id="hashtag" href="hashtag.php?hashtag=$1">#$1</a>');
     let res = repl.replace(/@(\w+)/g, '<a id="hashtag" href="profile.php?user=$1">@$1</a>');
     return res;
 }

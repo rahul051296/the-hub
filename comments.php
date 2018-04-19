@@ -145,7 +145,7 @@ $postId = $_REQUEST["postId"];
                     </div>
                         <script>
                                 pd = `'.$postedData.'`
-                                var repl = pd.replace(/#(\w+)/g, `<a id="hashtag" href="#">#$1</a>`);
+                                var repl = pd.replace(/#(\w+)/g, `<a id="hashtag" href="hashtag.php?hashtag=$1">#$1</a>`);
                                 var res = repl.replace(/@(\w+)/g, `<a id="hashtag" href="profile.php?user=$1">@$1</a>`);
                                 document.getElementById("posteddata").innerHTML = res;
                             </script>

@@ -211,12 +211,25 @@
                         </header>
                         <div id="chat-container">
                             <ul id="conversation">
+                            <li class="responder">Hi! I'm the HubBot. I can help you with your queries. Please select a quick link below or type your question
+                        in the space provided.<br>
+                        <div>
+                        <button class="btn btn-outline-primary btn-sm m-t-10" onclick="start('Hello')">Hello</button>
+                        <button class="btn btn-outline-primary btn-sm m-t-10" onclick="start('Ticket Status')">Ticket Status</button>
+                        <button class="btn btn-outline-primary btn-sm m-t-10" onclick="start('Order Details')">Order Details</button>
+                        <button class="btn btn-outline-primary btn-sm m-t-10" onclick="start('Customer Details')">Customer Details</button>
+                        </div>
+                    </li>
                             </ul>
                             <div id="bottom"></div>
                         </div>
+                        <div id="typing" class="text-muted">
+                            <img src="img/typing.gif" width="50px">
+                        </div>
                         <section class="row" id="input">
                             <div class="col-9 col-md-10" style="padding-right: 0">
-                                <input type="text" id="chat-input" placeholder="Enter your message" class="form-control">
+                                <input type="text" id="chat-input" placeholder="Enter your message" class="form-control text-box1" style="padding-right:30px">
+                                <span id="mic"><i class="fas fa-microphone" onclick="listen()"></i></span>
                             </div>
                             <div class="col-3 col-md-2" style="padding-left: 5px">
                                 <button id="btn" class="btn btn-primary btn-block" onclick="send()"><i class="fas fa-paper-plane"></i></button>
